@@ -1,0 +1,9 @@
+Hi there,
+I am just a text file, nothing interesting to see here. I contain only boring ASCII characters, which is a
+good thing because if I didn't, then you might not be able open me. If you felt like opening me on your
+Thumby you could use Reader.py. It's not very good, but it works as long as your longest word is only 12
+characters long. If you did decide to open me with Reader.py, you could scroll through me using the d-pad
+and when you get bored of me, you could leave by pressing A/B. By the way I noticed you can't open me with
+the Thumby emulator, but I can open on a real Thumby.
+Sincerely,
+Josh the Text File
