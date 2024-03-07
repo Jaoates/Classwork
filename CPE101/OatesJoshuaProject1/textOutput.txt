@@ -1,0 +1,29 @@
+Welcome to Fitness Tracker Application!
+	To begin you must specify the participant's name, age, height (in inches),
+	weight (in lb), exercise duration (in minutes), and exercise type (1-4)!
+	Now you can compute the burned calories and BMI.
+Enter the name: Sam Smith 
+Enter age: -12 
+Error: age must be an integer > 0! 
+Enter age: 24 
+Enter height in inches: 0 
+Error: height must be greater than o! 
+Enter height in inches: 65 
+Enter weight in lb: -26 
+Error: weight must be greater than o! 
+Enter weight in pounds: 175 
+Enter duration of exercise in minutes: 0 
+Error: duration must be greater than o! 
+Enter duration of exercise in minutes: 45 
+Enter exercise type: 1) low-impact 2) high-impact 3) slow-paced 4) fast-paced 8 
+Error: exercise type must be an integer between [1,4]! 
+Enter exercise type [1,4]: 3
+           Name : Sam Smith
+            Age : 24 
+         Height : 65.00 inches 
+         Weight : 175.00 lb
+           Miles: 1.91 
+Burned Calories : 187.53
+            BMI : 29.12
+   BMI Category : Over Weight
+Do you want to apply fitness tracking for another user (y/n)? y
