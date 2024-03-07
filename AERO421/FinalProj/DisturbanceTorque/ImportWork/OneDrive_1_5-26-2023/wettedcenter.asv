@@ -1,0 +1,20 @@
+function C_ps = wettedcenter(s, A, rho) % for cubeish spacecraft aligned with body frame 
+
+    C_ps = zeros(3,1);
+    n = {[1; 0; 0 ], [0; 1; 0], [0; 0; 1], [-1; 0; 0 ], [0; -1; 0], [0; 0; -1]}; %normal vecs
+    assert(length(A) == length(n));
+    assert(length(rho) == length(n));
+
+
+    for i = 1:length(n)
+        ndot = dot(n{i}, s); % check if 'wetted'
+        if ndot < 1
+            ndot = 0; 
+        end
+
+        C_ps = C_ps + ((rho{i} * ndot) * A / (dot(n{i}, s) * A)); 
+
+        
+    end
+end
+

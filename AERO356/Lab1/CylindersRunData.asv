@@ -1,0 +1,132 @@
+clear all
+close all
+d = importdata("A356_Lab1_Cylinders_Run1_data.csv");
+d = d.data;
+d1.t = d(:,1);
+d1.T1 = d(:,2);
+d1.T2 = d(:,3);
+d1.T3 = d(:,4);
+d1.T4 = d(:,5);
+
+d = importdata("A356_Lab1_Cylinders_Run2_data.csv");
+d = d.data;
+d2.t = d(:,1);
+d2.T1 = d(:,2);
+d2.T2 = d(:,3);
+d2.T3 = d(:,4);
+d2.T4 = d(:,5);
+clear d
+
+pamb1 = polyfit(d1.t,d1.T4,1);
+pamb2 = polyfit(d2.t,d2.T4,1);
+
+pamb1 = @(t) pamb1(1)*t+pamb1(2);
+pamb2 = @(t) pamb2(1)*t+pamb2(2);
+
+d2.aveWin = [200,350];
+d2.aveWin = d2.t>d2.aveWin(1) & d2.t<d2.aveWin(2);
+d2.dT1 = polyfit(d2.t(d2.aveWin),d2.T1(d2.aveWin),1);
+d2.dT2 = polyfit(d2.t(d2.aveWin),d2.T2(d2.aveWin),1);
+d2.dT3 = polyfit(d2.t(d2.aveWin),d2.T3(d2.aveWin),1);
+d2.dT4 = polyfit(d2.t(d2.aveWin),d2.T4(d2.aveWin),1);
+
+d1.aveWin = [400,500];
+d1.aveWin = d1.t>d1.aveWin(1) & d1.t<d1.aveWin(2);
+d1.dT1 = polyfit(d1.t(d1.aveWin),d1.T1(d1.aveWin),1);
+d1.dT2 = polyfit(d1.t(d1.aveWin),d1.T2(d1.aveWin),1);
+d1.dT3 = polyfit(d1.t(d1.aveWin),d1.T3(d1.aveWin),1);
+d1.dT4 = polyfit(d1.t(d1.aveWin),d1.T4(d1.aveWin),1);
+
+
+c(1).material = "Al";
+c(1).color = "White";
+c(1).nomD = ".75";
+c(1).m = 29.431;
+c(1).d = .7556;%in
+c(1).L = 1.509;
+c(1).c = 0.89;% J/g
+c(1).dT = d1.dT1(1);
+
+c(2).material = "Al";
+c(2).color = "Polished";
+c(2).nomD = ".75";
+c(2).m = 27.743;
+c(2).d = .7335;
+c(2).L = 1.50;
+c(2).c = 0.89;% J/g
+c(2).dT = d1.dT2(1);
+
+c(3).material = "Al";
+c(3).color = "Black";
+c(3).nomD = ".75";
+c(3).m = 29.518;
+c(3).d = .757;
+c(3).L = 1.507;
+c(3).c = 0.89;% J/g
+c(3).dT = mean([d1.dT3(1),d2.dT3(1)]);
+
+c(4).material = "Al";
+c(4).color = "Black";
+c(4).nomD = "1.0";
+c(4).m = 52.705;
+c(4).d = 1.008;
+c(4).L = 1.512;
+c(4).c = 0.89;% J/gK
+c(4).dT = d2.dT1(1);
+
+c(5).material = "Br";
+c(5).color = "Polished";
+c(5).nomD = ".75";
+c(5).m = 91.518;
+c(5).d = .7545;
+c(5).L = 1.511;
+c(5).c = 0.380;% J/gK
+c(5).dT = d2.dT2(1);
+
+
+%%%%%% 
+% AL W .75
+% AL S .75
+% AL B .75
+leg = c(1).material +" " +c(1).color +" " + c(1).nomD;
+leg = [leg,(c(2).material +" " +c(2).color +" " + c(2).nomD)];
+leg = [leg,(c(3).material +" " +c(3).color +" " + c(3).nomD)];
+
+leg = [leg,"Ambient","Ambient Best Fit"];
+figure 
+hold on
+plot(d1.t,d1.T1,d1.t,d1.T2,d1.t,d1.T3,d1.t,d1.T4)
+fplot(pamb1)
+legend(leg,Location="best")
+title("Run 1")
+ylabel("Temp [K]")
+xlabel("Time [s]")
+
+% AL B 1
+% BR S 1
+% AL B .75
+leg = c(4).material +" " +c(4).color +" " + c(4).nomD;
+leg = [leg,(c(5).material +" " +c(5).color +" " + c(5).nomD)];
+leg = [leg,(c(3).material +" " +c(3).color +" " + c(3).nomD)];
+leg = [leg,"Ambient","Ambient Best Fit"];
+
+figure
+hold on
+plot(d2.t,d2.T1,d2.t,d2.T2,d2.t,d2.T3,d2.t,d2.T4)
+fplot(pamb2)
+
+legend(leg,Location="best")
+title("Run 2")
+ylabel("Temp [K]")
+xlabel("Time [s]")
+
+% find the Solar constant
+
+
+I = @(c)(c.m*c.c*c.dT)/(c.d*c.L);
+
+for i = 1:length(c)
+    c(i).I = I(c(i));
+end
+
+

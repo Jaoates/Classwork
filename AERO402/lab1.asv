@@ -1,0 +1,184 @@
+%% Lab 1 - Joshua Oates
+clear all
+close all
+clc
+
+
+%% calibration curve
+close all
+lb_mv = [
+1 535
+2 689
+3 880
+4 1063
+5 1235
+]; % lb in col1 and mv in col 2
+
+figure
+hold on
+scatter(lb_mv(:,2),lb_mv(:,1))
+title("Calibration Curve")
+xlabel("Voltage [mv]")
+ylabel("Weight [lb]")
+
+p=polyfit(lb_mv(:,2),lb_mv(:,1),1);
+mv2lbs= @(mv) mv.*p(1)+p(2);
+plot(500:1500,mv2lbs(500:1500))
+legend("Experimental Data","Best Power Fit","Location","best")
+
+g = 32.1741;
+
+%% Run 1
+
+
+d = (5:5:60)';
+d = [d,mv2lbs([.383 .519 .579 .587 .621 .624 .6 .675 .687 .687 .649 .355]'.*1000)];
+d = [d,[25 25 25 25 26 26 26 26.5 27 27.1 28.5 0]'];
+d = [d,[40 40 40 40 40 40 41 42 42.5 43 44 110]'];
+d = [d,[100 100 100 100 100 100 100 100 101 100 103 105]'];
+dLabels = ["Time [s]","Force [lb]","Propane [psi]","P1 [psi]","Po [psi]"];
+
+figure
+plot(d(:,1),d(:,2))
+ylabel("Thrust [lbs]")
+xlabel("Time [s]")
+title("Thrust Curve - Run 1")
+
+OD = 2; %in outer dia
+IDi = .505; %in inner dia
+mi = 500.6; %g initial mass of grain
+mf = 404.2; %g final mass of grain
+L = 7.5; %in length of grain
+tb = 60;%s burn time
+
+g2lb = 0.00220462; % grams to lbs
+
+mi = mi*g2lb; %g
+mf = mf*g2lb; %g
+
+rhof = .043; % lb/in^3 density of grain
+
+Dw = mf-mi; % delta weight (mass?)
+DA = -Dw /(rhof*L); % Delta cross sectional area
+Ai = (pi*IDi^2)/4; % Initial c.s. area
+Af = Ai+DA; % final c.s. area
+
+IDf = sqrt(4*Af/pi); % effcitive final inner dia
+Ddia = (IDf-IDi)/2; % change in innder dia
+r1 = Ddia/tb % burn rate
+
+% mdot
+
+nozDia = .053; %in throat dia
+At = pi*(nozDia/2)^2; % throat area
+
+PoOX = mean(d(3:end-1,5))
+gam = 1.395; % gamma
+% PoOX = 100; % total pressure oxygen (regulator pressure)
+R = 48.291; % ft things % Rgas
+R = R/12; %in
+TOX = 77; %F ambient temperature
+TOX = TOX + 459.67; %R 
+CD = .941; % nozzle coeff
+
+mdotOX = (CD*PoOX*At*gam/sqrt(gam*R*TOX))*(2/(gam+1))^((gam+1)/(2*(gam-1))) % mass flow eq
+mdotF = -Dw/60
+mixRatio1 = mdotOX/mdotF
+
+Fave1 = mean(d(3:end-1,2)) % averaged in the middle values while in steady state
+Pcave1 = mean(d(3:end-1,3))
+
+Isp1 = Fave1/((mdotF+mdotOX)*g)
+
+
+
+%% run 2
+
+d = (15:5:50)';
+d = [d,mv2lbs([.404 .486 .554 .486 .466 .460 .482 .491]'.*1000)];
+d = [d,[20 20 20 20 20 20 21 22]'];
+d = [d,[34 33 33 33 33 33 33 34]'];
+d = [d,[85 85 85 85 85 85 85 85]'];
+dLabels = ["time [s]","Force [Volts]","Propane [psi]","P1 [psi]","Po [psi]"];
+
+
+figure
+plot(d(:,1),d(:,2))
+ylabel("Thrust [lbs]")
+xlabel("Time [s]")
+title("Thrust Curve - Run 2")
+
+OD = 1.898; %in outer dia
+IDi = .396; %in inner dia
+mi = 500.4; %g initial mass of grain
+mf = 435.0; %g final mass of grain
+L = 7.6; %in length of grain
+tb = 60;%s burn time
+
+g2lb = 0.00220462; % grams to lbs
+
+mi = mi*g2lb; %g
+mf = mf*g2lb; %g
+
+rhof = .043; % lb/in^3 density of grain
+
+Dw = mf-mi; % delta weight (mass?)
+DA = -Dw /(rhof*L); % Delta cross sectional area
+Ai = (pi*IDi^2)/4; % Initial c.s. area
+Af = Ai+DA; % final c.s. area
+
+IDf = sqrt(4*Af/pi); % effcitive final inner dia
+Ddia = (IDf-IDi)/2; % change in innder dia
+r2 = Ddia/tb % burn rate
+
+% mdot
+
+nozDia = .053; %in throat dia
+At = pi*(nozDia/2)^2; % throat area
+
+PoOX = mean(d(3:end-1,5))
+gam = 1.395; % gamma
+% PoOX = 100; % total pressure oxygen (regulator pressure)
+R = 48.291; % ft things % Rgas
+R = R/12; %in
+TOX = 77; %F ambient temperature
+TOX = TOX + 459.67; %R 
+CD = .941; % nozzle coeff
+
+mdotOX = (CD*PoOX*At*gam/sqrt(gam*R*TOX))*(2/(gam+1))^((gam+1)/(2*(gam-1))) % mass flow eq
+mdotF = -Dw/60
+mixRatio2 = mdotOX/mdotF
+
+Fave2 = mean(d(3:end-1,2)) % averaged in the middle values while in steady state
+Pcave2 = mean(d(3:end-1,3))
+
+
+Isp1 = Fave2/((mdotF+mdotOX)*g)
+
+%% plots bewteen runs
+figure
+hold on
+rates = [r2 r1]';
+pressures = [Pcave2 Pcave1]';
+scatter(rates,pressures)
+% fun = fit(rates,pressures,"power")
+f = fit(rates,pressures,'b*x^m')
+plot(f,'k')
+ylabel("Burn Rate [in/s]")
+xlabel("Pressure [psi]")
+legend("Experimental Data","Best Power Fit","Location","best")
+set(gca,"XScale","log")
+set(gca,"yScale","log")
+title("Burn Rate vs Chamber Pressure")
+
+figure
+hold on 
+scatter([Pcave1 Pcave2],[mixRatio1 mixRatio2])
+stoich = 192/100.1 
+yline(stoich)
+ylim([0,2])
+title("Mixture Ratio")
+xlabel("Chamber Pressure [psi]")
+ylabel("Average Mixture Ratio")
+legend("Experimental Data","Stoichiometric Ratio","Location","best")
+

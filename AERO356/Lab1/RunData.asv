@@ -1,0 +1,25 @@
+%% MLI run data
+% this file is for calculations and data output from the MLI lab while the 
+% MLI was in the vacuum chamber
+clear all
+close all
+load("MLIrun.mat")
+t = MLIrun(:,1);
+LT = MLIrun(:,2);
+UT = MLIrun(:,3);
+clear MLIrun
+
+LT = LT + 273.15;
+UT = UT + 273.15;
+t = t*60;
+
+f = figure
+hold on
+plot(t,LT)
+plot(t,UT)
+
+xlabel("Time [s]")
+ylabel("Temp [K]")
+
+
+

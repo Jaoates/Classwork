@@ -1,0 +1,29 @@
+%% Midterm 1 - Joshua Oates
+
+%% Q4
+T = 3800;%K
+r = 6.26e8; %m
+R = 6.704e10;%m
+
+sig = 5.6704e-8;
+
+A = 4*pi*r^2;
+
+% exitance
+syms dA
+Q_unitA = sig*T^4;
+M = double(int(Q_unitA,dA,[0,A]));
+% Q_total = Q_unitA*A
+
+% irradiance
+E_planet = 
+
+% wavelength max
+
+
+% what star color
+
+
+
+
+

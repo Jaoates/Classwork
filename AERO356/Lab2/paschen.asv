@@ -1,0 +1,43 @@
+clear; close all; clc
+
+
+%% data read
+SSD1 = readtable("Arching.xlsx");
+P_SSD1 = rmmissing(SSD1.PressureGap_TorrIn_);
+V_SSD1 = rmmissing(SSD1.Voltage_V_);
+
+
+% CONFIGURATION: COPPER ANODE, DISTANCE == 0.5 INCHES
+p = [6, 4, 2.4, 1.2, 0.28, 0.16]; % theoretical pressure based on distance between nodes
+act_p = [5.9, 3.8, 2.4, 1.2, .28 , .16 ]; % actual values
+v = [1.000, .700, .700, .600, .621, .784 ]; % voltage in kV when arcing occurred
+
+
+
+SSD2 = readtable("Group 4 SS D2.xlsx");
+P_SSD2 = SSD2.Pressure_Torr_;
+V_SSD2 = SSD2.Voltage_V_;
+
+
+
+%% plot setup
+
+labels = {'Stainless Steel, .5" gap', 'Stainless Steel, 1" gap'}; %etc
+
+%% plot
+
+hold on
+grid on
+loglog(P_SSD1, V_SSD1, 'x-')
+loglog(P_SSD2, V_SSD2, 'x-')
+
+
+ax = gca;
+ax.XScale = "log";
+ax.YScale = "log";
+
+ylim([500 1000])
+xlabel("Pressure Gap (Torr-inch)")
+ylabel("Breakdown Voltage (V)")
+title("Paschen Curves")
+legend(labels)
