@@ -1,0 +1,21 @@
+%% Joshua Oates - Midterm 1
+
+%% Q11 6.3
+a = 3; %mm
+a = a/1000;% m
+% c = 2*a;
+sig = 148;%MPa
+Y = 1;
+
+K1 = sig*Y*sqrt(pi*a)
+
+%% Q20 2.1
+
+t = 9;%mm
+W = 78;
+H = 29;
+sigAllow = 88;%
+
+
+
+
