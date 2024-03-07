@@ -1,0 +1,420 @@
+"use strict";
+//=======================================================================================
+//
+//                          Isentropic Flow Calculator
+//
+//                Interactive Program to solve Standard Atmosphere Equations
+//                             for isentropic flow
+//
+//                          Original Java Applet Written By:
+//
+//                                    Tom Benson
+//                              NASA Glenn Research Center
+//
+//                          Converted to JavaScript App By:
+//
+//                                  Chima Ugonna
+//                      NASA Glenn Research Center Intern Spring 2018
+//                            Illinois Institute of Technology
+//
+//
+//                                      NOTICE
+//  ~>  This software is in the Public Domain.  It may be freely copied and used in
+//  ~>  non-commercial products, assuming proper credit to the author is given.  IT
+//  ~>  MAY NOT BE RESOLD.  If you want to use the software for commercial
+//  ~>  products, contact the author.
+//  ~>  No copyright is claimed in the United States under Title 17, U. S. Code.
+//  ~>  This software is provided "as is" without any warranty of any kind, either
+//  ~>  express, implied, or statutory, including, but not limited to, any warranty
+//  ~>  that the software will conform to specifications, any implied warranties of
+//  ~>  merchantability, fitness for a particular purpose, and freedom from
+//  ~>  infringement, and any warranty that the documentation will conform to the
+//  ~>  program, or any warranty that the software will be error free.
+//  ~>  In no event shall NASA be liable for any damages, including, but not
+//  ~>  limited to direct, indirect, special or consequential damages, arising out
+//  ~>  of, resulting from, or in any way connected with this software, whether or
+//  ~>  not based on warranty, contract, tort or otherwise, whether or not injury
+//  ~>  was sustained by persons or property or otherwise, and whether or not loss
+//  ~>  was sustained from, or arose out of the results of, or use of, the software
+//  ~>  or services provided hereunder.
+//
+//=======================================================================================
+
+//=======================================================================================
+// $jQuery$
+//=======================================================================================
+
+//=======================================================================================
+//declare global vars
+var mach = 0;
+var gamma=0;
+var prat=0, trat=0, drat=0, arat=0, dynrat=0, wcor=0, mu=0, nu=0;
+$(document).ready(function(){
+
+    // Initializing the button and inputs
+      $( "button" ).button();
+      $("#gamInput").val(1.4);
+      $("#input1").val(2.0);
+
+
+  var computation = function ( event ){
+
+
+      var iselect = $("#inputvals").val();  //variable selection
+      var input = document.getElementById('input1').value;  //get variable input
+      gamma = document.getElementById('gamInput').value;  //get gamma input
+      var sub = document.getElementById('sonic').value; //get sonic input
+      var pgam = parseFloat(gamma)+1; //gamma plus 1
+      var mgam = parseFloat(gamma)-1; //gamma minus 1
+      gamma = parseFloat(gamma);
+
+      if(iselect == 0){ //mach number
+        mach = input;
+        limits(); //set input limits
+        calcIsen(mach, gamma, event); //calc flow
+      }else if(iselect == 1){ //pressure ratio
+        prat = input;
+        limits(); //set input limits
+        mach = Math.sqrt(2.0*(Math.pow(prat, (-1*mgam)/gamma) - 1.0)/mgam);
+        calcIsen(mach, gamma, event); //calc flow
+      }else if(iselect == 2){ //temp ratio
+        trat = input;
+        limits(); //set input limits
+        mach = Math.sqrt(2.0*(Math.pow(trat,-1.0) - 1.0)/mgam);
+        calcIsen(mach, gamma, event); //calc flow
+      }
+      else if(iselect == 3){  //density ratio
+        drat = input;
+        limits(); //set input limits
+        mach = Math.sqrt(2.0*(Math.pow(drat, (-1*mgam)) - 1.0)/mgam);
+        calcIsen(mach, gamma, event); //calc flow
+      }
+      else if(iselect == 4){  //area ratio
+        arat = input;
+        limits(); //set input limits
+        mach = getMachArat(); //get area ratio mach
+        //alert(mach);
+        arat = $("#input1").val();
+        calcIsen(mach, gamma, event); //calc flow
+      }
+      else if(iselect == 5){  //dynamic pressure ratio
+        dynrat = input;
+        limits(); //set input limits
+        mach = Math.sqrt(2.0*dynrat/gamma);
+        calcIsen(mach, gamma, event); //calc flow
+      }
+      else if(iselect == 6){  //flow per area wcor
+        wcor = input;
+        limits(); //set input limits
+        mach = getMach(sub, wcor);  //get mach for wcor
+        calcIsen(mach, gamma, event); //calc flow
+      }
+      else if(iselect == 7){  //mach angle
+        mu = input;
+        limits(); //set input limits
+        mach = 1.0/(Math.sin(mu * (3.14159/180)));
+        calcIsen(mach, gamma, event); //calc flow
+      }
+      else if(iselect == 8){  //prandtl-meyer angle
+        nu = input;
+        limits(); //set input limits
+        mach = getMachpm(); //get mach for nu
+        calcIsen(mach, gamma, event); //calc flow
+      }
+      if(isNaN(mach)){
+        mach = 0.0; //set mach to zero if NaN
+      }
+      //set maximum value to avoid infinity
+      if(isFinite(mach) == false){
+        mach = 2147483.8;
+      }
+      if(isFinite(prat) == false){
+        prat = 2147483.8;
+      }
+      if(isFinite(trat) == false){
+        trat = 2147483.8;
+      }
+      if(isFinite(drat) == false){
+        drat = 2147483.8;
+      }
+      if(isFinite(arat) == false){
+        arat = 2147483.8;
+      }
+      if(isFinite(dynrat) == false){
+        dynrat = 2147483.8;
+      }
+      if(isFinite(wcor) == false){
+        wcor = 2147483.8;
+      }
+      if(isFinite(mu) == false){
+        mu = 2147483.8;
+      }
+      if(isFinite(nu) == false){
+        nu = 2147483.8;
+      }
+
+      getOutputs(); //display outputs
+  };
+
+  //calculate isentropic flow
+  var calcIsen = function(mach, gamma, event){
+    var pgam = parseFloat(gamma)+1;
+    var mgam = parseFloat(gamma)-1;
+    var mach2 = mach*mach;
+    var mach3 = parseFloat(mach2)-1.0;
+    var factor = 1.0 + (0.5 * mgam * mach2);
+    var iselect = $("#inputvals").val();
+    prat = Math.pow(1.0/factor, gamma/mgam);
+    trat = 1.0/factor;
+    drat = Math.pow(1.0/factor, 1.0/mgam);
+    var factor2 = pgam / (2.0 * mgam);
+    arat = mach * Math.pow(factor, -1*factor2) * Math.pow(pgam/2.0, factor2);
+    arat = 1.0/arat;
+    dynrat = gamma*mach2 * 0.5;
+    wcor = getAir(mach);
+    mu = (Math.asin(1.0/mach))/(3.14159/180);
+
+    var nval1 = Math.sqrt((pgam)/(mgam));
+    var nv2 = Math.sqrt((mgam*mach3)/pgam);
+    var nval2 = Math.atan(nv2) * (180/3.14159);
+    var nval3 = Math.atan(Math.sqrt(mach3))*(180/3.14159);
+    nu = (nval1*nval2) - nval3;
+
+    if(isNaN(mach)){  //if NaN set mach to zero
+      mach = 0.0;
+    }
+    if(mach == 0){  //if mach = 0, as do mu and nu
+      mu = 0.0;
+      nu = 0.0;
+    }
+    //set all NaN values to zero
+    if(isNaN(mu)){
+      mu = 0.0;
+    }
+    if(isNaN(trat)){
+      trat = 0.0;
+    }
+    if(isNaN(dynrat)){
+      dynrat = 0.0;
+    }
+    if(isNaN(nu)){
+      nu = 0.0;
+    }
+    if(isNaN(prat)){
+      prat = 0.0;
+    }
+    if(isNaN(drat)){
+      drat = 0.0;
+    }
+    if(isNaN(arat)){
+      arat = 0.0;
+    }
+    if(isNaN(wcor)){
+      wcor = 0.0;
+    }
+
+  };
+
+  var getAir = function(mach) {
+    var m2 = mach*mach;
+    var f2 = (parseFloat(gamma)+1)/(2.0 * (parseFloat(gamma)-1.0));
+    var g1 = 0.5 * m2 * (parseFloat(gamma)-1.0);
+    var f1 = Math.pow((1.0 + g1), f2);
+    var air = (0.50161 * Math.sqrt(parseFloat(gamma)) * mach)/(f1);
+    return air;
+  };
+
+  var getMach = function(sub, cor){ //mach calculation for wcor
+    var m0 = 1.0;
+    var a0 = 0;
+    var a1=0;
+    var am=0;
+    var mres = 0;
+    var iter=0;
+    var newmach=0;
+    var chok = getAir(1.0);
+    if(cor > chok){
+      mres = 1.0;
+      return mres;
+    }else{
+      a0 = 0.25618;
+      m0 = 1.0;
+      if(sub == 0) m0 = 1.703;
+      else if(sub == 1) m0 = 0.5;
+      iter = 1;
+      newmach = m0 - 0.2;
+      while(Math.abs(cor-a0) > .0001 && iter < 20) {
+         a1 =  getAir(newmach);
+         am = (a1-a0)/(newmach-m0);
+         a0 = a1;
+         m0 = newmach;
+         newmach = m0 + ((cor - a0)/am);
+         iter++;
+      }
+      mres = m0;
+    }
+
+    return mres;
+  };
+
+  var getMachArat = function(){
+    var f1 = (gamma+1)/(2.0*(gamma-1));
+    var a0 = 2.0;
+    var m0 = 2.2;
+    var m1=0;
+    var fac=0;
+    var a1=0;
+    var am = 0;
+    var sub = document.getElementById('sonic').value;
+    if(sub == 1){
+      m0 = 0.3;
+    }
+    m1 = m0 + 0.05;
+    while(Math.abs(arat-a0) > 0.0001){
+      fac = 1.0 + 0.5*(gamma-1)*m1*m1;
+      a1 = 1.0/(m1 * Math.pow(fac, -1*f1) * Math.pow((gamma+1)/2.0, f1));
+      am = (a1-a0)/(m1-m0);
+      a0 = a1;
+      m0 = m1;
+      m1 = m0 + ((arat - a0)/am);
+    }
+    mach = m0;
+    return mach;
+  }
+
+  var getMachpm = function(){
+    var m0 = 2.0;
+    var nu2 = parseFloat(nu) * (3.14159/180);
+    var pgam = gamma+1;
+    var mgam = gamma-1;
+    var val1 = Math.sqrt(pgam/mgam);
+    var val2a = Math.sqrt((mgam*m0)/pgam);
+    var val2 = Math.atan(val2a);
+    var val3a = Math.sqrt(m0);
+    var val3 = Math.atan(val3a);
+    var n0 = (parseFloat(val1)* parseFloat(val2)) - parseFloat(val3);
+    //var n0 = Math.sqrt(pgam/mgam) * Math.atan(Math.sqrt((mgam*m0)/pgam)) - Math.atan(Math.sqrt(m0));
+    var m1 = m0 + 0.01;
+    var nux=0;
+    var nm = 0;
+    while(Math.abs(nu2-n0) > 0.0001){
+      var v1 = Math.sqrt(pgam/mgam);
+      var v2a = Math.sqrt((mgam*m1)/pgam);
+      var v2 = Math.atan(v2a);
+      var v3a = Math.sqrt(m1);
+      var v3 = Math.atan(v3a);
+      nux = (v1 * v2) - v3;
+      //nux = Math.sqrt(pgam/mgam)*Math.atan(Math.sqrt((mgam*m0)/pgam)) - Math.atan(Math.sqrt(m1));
+      nm = (nux-n0)/(m1-m0);
+      n0 = nux;
+      m0 = m1;
+      m1 = m0 + ((nu2-n0)/nm);
+    }
+    mach = Math.sqrt(m0 + 1.0);
+
+    return mach;
+  };
+
+  //sets limits for inputs
+  var limits = function(){
+    var iselect = $("#inputvals").val();
+    if(gamma > 1.6) gamma = 1.6;
+    else if(gamma < 1.0) gamma = 1.0;
+    $("#gamInput").val(gamma);
+
+    if(iselect == 0){
+      if(mach > 3.0) mach = 3.0;
+      else if(mach < 0.01) mach = 0.01;
+      $("#input1").val(mach);
+    }else if(iselect == 1){
+      if(prat > 1.0) prat = 1.0;
+      else if(prat < 0.000001) prat = 0.000001;
+      $("#input1").val(prat);
+    }else if(iselect == 2){
+      if(trat > 1.0) trat = 1.0;
+      else if(trat < 0.005) trat = 0.005;
+      $("#input1").val(trat);
+    }else if(iselect == 3){
+      if(drat > 1.0) drat = 1.0;
+      else if(drat < 0.0005) drat = 0.0005;
+      $("#input1").val(drat);
+    }else if(iselect == 4){
+      if(arat > 60.0) arat = 60.0;
+      else if(arat < 1.0) arat = 1.0;
+      $("#input1").val(arat);
+    }else if(iselect == 5){
+      if(dynrat > 400.0) dynrat = 400.0;
+      else if(dynrat < 0.0005) dynrat = 0.0005;
+      $("#input1").val(dynrat);
+    }else if(iselect == 6){
+      if(wcor > 0.343) wcor = 0.343;
+      else if(wcor < 0.00002) wcor = 0.00002;
+      $("#input1").val(wcor);
+    }else if(iselect == 7){
+      if(mu > 90.0) mu = 90.0;
+      else if(mu < 1.0) mu = 1.0;
+      $("#input1").val(mu);
+    }else if(iselect == 8){
+      if(nu > 120.0) nu = 120.0;
+      else if(nu < 2.0) nu = 2.0;
+      $("#input1").val(nu);
+    }
+  }
+
+  //display outputs
+  var getOutputs = function(event){
+    var m = parseFloat(mach);
+    var machout = m.toFixed(3);
+    var muout = mu.toFixed(3);
+    var nuout = nu.toFixed(3);
+    var pratout = prat.toFixed(4);
+    var tratout = trat.toFixed(3);
+    var dratout = drat.toFixed(5);
+    var qratout = dynrat.toFixed(3);
+    var aratout = arat.toFixed(3);
+    var corout = wcor.toFixed(5);
+    $("#output1").html(machout);
+    $("#output2").html(muout);
+    $("#output3").html(nuout);
+    $("#output4").html(pratout);
+    $("#output5").html(tratout);
+    $("#output6").html(dratout);
+    $("#output7").html(qratout);
+    $("#output8").html(aratout);
+    $("#output9").html(corout);
+  };
+
+  //initial default calculations
+  var defaultCalc = function(event){
+    var iselect = $("#inputvals").val();
+    if(iselect == 0){
+      $("#input1").val(1.0);
+      $("#sonic").val(0);
+    }else if(iselect == 1){
+      $("#input1").val(1.0);
+      $("#sonic").val(1);
+    }else if(iselect == 2){
+      $("#input1").val(1.0);
+      $("#sonic").val(1);
+    }else if(iselect == 3){
+      $("#input1").val(1.0);
+      $("#sonic").val(1);
+    }else if(iselect == 4){
+      $("#input1").val(1.0);
+    }else if(iselect == 5){
+      $("#input1").val(1.0);
+    }else if(iselect == 6){
+      $("#input1").val(0.343);
+    }else if(iselect == 7){
+      $("#input1").val(2.0);
+    }else if(iselect == 8){
+      $("#input1").val(2.0);
+    }
+    computation();
+  };
+
+  $("button").on("click", computation );  //compute on button click
+  $("#inputvals").on("change", defaultCalc);  //run default calculation when change input selection
+  $("#sonic").on("change", computation ); //compute when change sonic selection
+  computation();  //initial computation on load
+});

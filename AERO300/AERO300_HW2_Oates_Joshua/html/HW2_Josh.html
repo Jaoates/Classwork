@@ -1,0 +1,343 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>HW2_Josh</title><meta name="generator" content="MATLAB 9.12"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-04-15"><meta name="DC.source" content="HW2_Josh.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">section 0 - clean and clear</a></li><li><a href="#2">section 1 - solutions to matlab problems on hw2 for AERO 300 HW 2</a></li></ul></div><h2 id="1">section 0 - clean and clear</h2><pre class="codeinput">clear <span class="string">all</span>
+close <span class="string">all</span>
+clc
+</pre><h2 id="2">section 1 - solutions to matlab problems on hw2 for AERO 300 HW 2</h2><pre class="codeinput"><span class="comment">%{
+</span><span class="comment">Problem 2 (40 points)
+</span><span class="comment">1. (17 points) Consider the equation x2 + ln x = 3 .
+</span><span class="comment">(a) (5 points) Find an interval [a,b] of length 1 that brackets the solution to the above equation.
+</span><span class="comment">    a) [1,2]
+</span><span class="comment">
+</span><span class="comment">(b) (5 points) Using your answer from part (a), how many steps of the Bisection Method are
+</span><span class="comment">required to correctly approximate the solution within 10 decimal places?
+</span><span class="comment">
+</span><span class="comment">    b) x2 + ln(x) - 3 = 0
+</span><span class="comment">
+</span><span class="comment">    we know from n&gt; (P+log10(b-a))/log10(2)
+</span><span class="comment">    that it will not take more than 34 iterations
+</span><span class="comment">
+</span><span class="comment">(c) (7 points) Check your answer to part (b) using the bisection.m function from class (and now
+</span><span class="comment">on Canvas ). Be sure to show your published code!
+</span><span class="comment">    c) Experiementaly, it takes 29 iterations.
+</span><span class="comment">%}
+</span>
+nEstimate = (10+log10(2-1))/log10(2);
+f = @(x) x^2 + log(x) - 3;
+[r, count] = bisection(f,1,2,10e-10);
+
+<span class="comment">%{
+</span><span class="comment">
+</span><span class="comment">
+</span><span class="comment">2. (23 points) The 2D state of stress in a test specimen under combined loading is given by
+</span><span class="comment">&#963; =
+</span><span class="comment">[&#8730;2 &#8722;1
+</span><span class="comment">&#8722;1 0.5]
+</span><span class="comment">ksi.
+</span><span class="comment">%}
+</span>
+s=[[2^.5,-1];[-1,.5]];
+
+
+<span class="comment">%{
+</span><span class="comment">(a) (4 points) Determine the characteristic equation of the stress state &#963; .
+</span><span class="comment">Hint: Recall that the characteristic equation of a matrix A is the polynomial p given by
+</span><span class="comment">p(&#955;) = det(A &#8722;&#955;I) ,
+</span><span class="comment">where I is the identity matrix.
+</span><span class="comment">1
+</span><span class="comment">%}
+</span><span class="comment">% P=det([[L*2^.5,-1];[-1,L*.5]]);</span>
+<span class="comment">% P = .5 * 2^.5 - L* 2^.5 - L * .5 + L^2</span>
+
+<span class="comment">%{
+</span><span class="comment">(b) (16 points) Use Matlab&reg;and the Bisection method to determine the principal stresses in the
+</span><span class="comment">specimen to within 6 decimal places. Remember to publish your code.
+</span><span class="comment">Hint: The principal stresses (&#963;1 and &#963;2) are simply the roots of the characteristic polynomial
+</span><span class="comment">of the stress state &#963; .
+</span><span class="comment">%}
+</span>
+<span class="comment">% lambda = L given by .5 * 2^.5 - L* 2^.5 - L * .5 + L^2 = 0</span>
+P = @(L) .5 * 2^.5 - L* 2^.5 - L * .5 + L^2;
+[s1, c1] = bisection(P,0,1,10e-10);
+[s2, c2] = bisection(P,1,2,10e-10);
+
+
+<span class="comment">%{
+</span><span class="comment">(c) (3 points) Using the Tresca failure criterion, predict whether the specimen will fail if the critical
+</span><span class="comment">shear stress of the material has been experimentally determined to be &#964;crit = 1.17 ksi.
+</span><span class="comment">Hint: The Tresca failure criterion is governed by the maximum shear stress in the specimen
+</span><span class="comment">which (in this case) can be taken to be &#964;max = (1/2)|&#963;1 &#8722;&#963;2|.
+</span><span class="comment">%}
+</span>Tmax = (1/2)*abs(s1-s2); <span class="comment">% is less than 1.17 so the speciemen will not fail</span>
+
+<span class="comment">%{
+</span><span class="comment">Problem 3 (40 points)
+</span><span class="comment">1. (4 points each) Find (by hand) all fixed points of the following g(x) :
+</span><span class="comment">(a) f(x) = (8 + 2x) / (2 + x^2)  = x
+</span><span class="comment">(b) f(x) = x^5
+</span><span class="comment">    a) x = 2
+</span><span class="comment">    b) x = 1 and x = 0
+</span><span class="comment">
+</span><span class="comment">2. (4 points each) Express each equation below as a fixed-point iteration problem x = g(x) in two
+</span><span class="comment">different ways:
+</span><span class="comment">(a) 1 + x &#8722;x^3 * e^x = 0
+</span><span class="comment">(b) x^2 + ln x = 3
+</span><span class="comment">
+</span><span class="comment">FPI of
+</span><span class="comment">    a) 1 + 2x &#8722;x^3 * e^x = x     ; -1  + x^3 * e^x = x
+</span><span class="comment">    b) (ln x -3)/x = x           ; e^(x^2 - 3) = x
+</span><span class="comment">
+</span><span class="comment">3. (24 points) In this part, we seek to approximate the principal stresses in the test specimen of Problem
+</span><span class="comment">2 part 2 using the fixed-point iteration method. As before, p(&#955;) is the characteristic polynomial of
+</span><span class="comment">the stress state as found in Problem 2 part 2(a).
+</span><span class="comment">(a) (3 points) Show that setting p(&#955;) = 0 is equivalent to setting
+</span><span class="comment">(2&#955;^2 + &#8730;2 &#8722;2)/(1 + 2&#8730;2) = &#955;
+</span><span class="comment">
+</span><span class="comment">Demonstrated using fpi
+</span><span class="comment">%}
+</span>g = @(x) (2*x^2 + 2^.5 -2)/(1 + 2* 2^.5);
+TOL = 0.5*10^(-5);
+[x1, c3] = fpi(g, 1.5 , TOL);
+
+
+
+<span class="comment">%{
+</span><span class="comment">(b) (6 points) Taking &#955;0 = 0.5 as the initial guess, use the function fpi.m to determine one of
+</span><span class="comment">the principal stresses in the specimen to within 6 decimal places. Can you determine the other
+</span><span class="comment">principal srress (for instance using a different initial guess)?
+</span><span class="comment">
+</span><span class="comment">TOL = 0.5*10^(-5);
+</span><span class="comment">%}
+</span>[x2, c4] = fpi(g, .5 , 10e-6);
+<span class="comment">%{
+</span><span class="comment">you cannot find the other root using a different guess
+</span><span class="comment">
+</span><span class="comment">
+</span><span class="comment">
+</span><span class="comment">(c) (12 points) Express p(&#955;) = 0 as a different fixed-point iteration problem, g(&#955;) = &#955;, and use
+</span><span class="comment">this new form to find the other principal stress in the specimen to within the same accuracy as
+</span><span class="comment">before.
+</span><span class="comment">.5 * 2^.5 - L* 2^.5 - L * .5 + L^2
+</span><span class="comment">=&gt; -L^2=.5 * 2^.5 - L* 2^.5 - L * .5
+</span><span class="comment">=&gt; L = -(.5*2^.5)/L + 2^.5 +.5
+</span><span class="comment">%}
+</span>g = @(x)  -(.5*2^.5)/x + 2^.5 +.5;
+
+[x3, c3] = fpi(g, 1.4 , 10e-6);
+
+<span class="comment">%{
+</span><span class="comment">
+</span><span class="comment">(d) (3 points) When compared to the bisection method used in Problem 2 part 2, which method
+</span><span class="comment">do you prefer? Which one was more efficient?
+</span><span class="comment">    d) i prefer bisection, its much cleaner and the predictability is good
+</span><span class="comment">    fpi is more effecient from a computational perspective but spent much
+</span><span class="comment">    more of my time
+</span><span class="comment">%}</span>
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% section 0 - clean and clear
+clear all
+close all
+clc
+
+%% section 1 - solutions to matlab problems on hw2 for AERO 300 HW 2
+
+%{
+Problem 2 (40 points)
+1. (17 points) Consider the equation x2 + ln x = 3 .
+(a) (5 points) Find an interval [a,b] of length 1 that brackets the solution to the above equation.
+    a) [1,2]
+
+(b) (5 points) Using your answer from part (a), how many steps of the Bisection Method are
+required to correctly approximate the solution within 10 decimal places?
+
+    b) x2 + ln(x) - 3 = 0
+
+    we know from n> (P+log10(b-a))/log10(2)
+    that it will not take more than 34 iterations
+
+(c) (7 points) Check your answer to part (b) using the bisection.m function from class (and now
+on Canvas ). Be sure to show your published code!
+    c) Experiementaly, it takes 29 iterations.
+%}
+
+nEstimate = (10+log10(2-1))/log10(2);
+f = @(x) x^2 + log(x) - 3;
+[r, count] = bisection(f,1,2,10e-10);
+
+%{
+
+
+2. (23 points) The 2D state of stress in a test specimen under combined loading is given by
+σ =
+[√2 −1
+−1 0.5]
+ksi.
+%}
+
+s=[[2^.5,-1];[-1,.5]];
+
+
+%{
+(a) (4 points) Determine the characteristic equation of the stress state σ .
+Hint: Recall that the characteristic equation of a matrix A is the polynomial p given by
+p(λ) = det(A −λI) ,
+where I is the identity matrix.
+1
+%}
+% P=det([[L*2^.5,-1];[-1,L*.5]]);
+% P = .5 * 2^.5 - L* 2^.5 - L * .5 + L^2
+
+%{
+(b) (16 points) Use Matlab®and the Bisection method to determine the principal stresses in the
+specimen to within 6 decimal places. Remember to publish your code.
+Hint: The principal stresses (σ1 and σ2) are simply the roots of the characteristic polynomial
+of the stress state σ .
+%}
+
+% lambda = L given by .5 * 2^.5 - L* 2^.5 - L * .5 + L^2 = 0
+P = @(L) .5 * 2^.5 - L* 2^.5 - L * .5 + L^2;
+[s1, c1] = bisection(P,0,1,10e-10);
+[s2, c2] = bisection(P,1,2,10e-10);
+
+
+%{
+(c) (3 points) Using the Tresca failure criterion, predict whether the specimen will fail if the critical
+shear stress of the material has been experimentally determined to be τcrit = 1.17 ksi.
+Hint: The Tresca failure criterion is governed by the maximum shear stress in the specimen
+which (in this case) can be taken to be τmax = (1/2)|σ1 −σ2|.
+%}
+Tmax = (1/2)*abs(s1-s2); % is less than 1.17 so the speciemen will not fail
+
+%{
+Problem 3 (40 points)
+1. (4 points each) Find (by hand) all fixed points of the following g(x) :
+(a) f(x) = (8 + 2x) / (2 + x^2)  = x
+(b) f(x) = x^5 
+    a) x = 2
+    b) x = 1 and x = 0
+
+2. (4 points each) Express each equation below as a fixed-point iteration problem x = g(x) in two
+different ways:
+(a) 1 + x −x^3 * e^x = 0 
+(b) x^2 + ln x = 3 
+
+FPI of
+    a) 1 + 2x −x^3 * e^x = x     ; -1  + x^3 * e^x = x
+    b) (ln x -3)/x = x           ; e^(x^2 - 3) = x
+
+3. (24 points) In this part, we seek to approximate the principal stresses in the test specimen of Problem
+2 part 2 using the fixed-point iteration method. As before, p(λ) is the characteristic polynomial of
+the stress state as found in Problem 2 part 2(a).
+(a) (3 points) Show that setting p(λ) = 0 is equivalent to setting 
+(2λ^2 + √2 −2)/(1 + 2√2) = λ
+
+Demonstrated using fpi
+%}
+g = @(x) (2*x^2 + 2^.5 -2)/(1 + 2* 2^.5);
+TOL = 0.5*10^(-5);
+[x1, c3] = fpi(g, 1.5 , TOL);
+
+
+
+%{
+(b) (6 points) Taking λ0 = 0.5 as the initial guess, use the function fpi.m to determine one of
+the principal stresses in the specimen to within 6 decimal places. Can you determine the other
+principal srress (for instance using a different initial guess)?
+
+TOL = 0.5*10^(-5);
+%}
+[x2, c4] = fpi(g, .5 , 10e-6);
+%{ 
+you cannot find the other root using a different guess
+
+
+
+(c) (12 points) Express p(λ) = 0 as a different fixed-point iteration problem, g(λ) = λ, and use
+this new form to find the other principal stress in the specimen to within the same accuracy as
+before.
+.5 * 2^.5 - L* 2^.5 - L * .5 + L^2
+=> -L^2=.5 * 2^.5 - L* 2^.5 - L * .5
+=> L = -(.5*2^.5)/L + 2^.5 +.5
+%}
+g = @(x)  -(.5*2^.5)/x + 2^.5 +.5;
+
+[x3, c3] = fpi(g, 1.4 , 10e-6);
+
+%{
+
+(d) (3 points) When compared to the bisection method used in Problem 2 part 2, which method
+do you prefer? Which one was more efficient?
+    d) i prefer bisection, its much cleaner and the predictability is good
+    fpi is more effecient from a computational perspective but spent much
+    more of my time
+%}
+##### SOURCE END #####
+--></body></html>

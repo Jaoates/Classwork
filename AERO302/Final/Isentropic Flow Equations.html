@@ -1,0 +1,471 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0056)https://www.grc.nasa.gov/www/k-12/airplane/isentrop.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Isentropic Flow Equations</title>
+
+<meta name="keywords" content="gases, equations, mathematics, fluid dynamics, compressibility, compressible aerodynamics, aerodynamics, area ratio, calculators, modeling, isentropic flow, pressure, temperature, density, Mach number, pressure ratio, temperature ratio, Mach angle, Prandtl-Meyer angle, dynamic pressure, corrected airflow
+">
+
+<link href="./Isentropic Flow Equations_files/portal.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="./Isentropic Flow Equations_files/isentrop.css" type="text/css">
+  <script src="./Isentropic Flow Equations_files/jquery.min.js.download" deter=""></script>
+  <script src="./Isentropic Flow Equations_files/jquery-ui.min.js.download" deter=""></script>
+  <script src="./Isentropic Flow Equations_files/isentrop.js.download" type="text/javascript" deter=""></script>
+</head>
+
+<body bgcolor="#000000">
+<table width="730" border="0" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tbody><tr>
+    <td>
+
+<!-- Header Begins-->
+
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td width="365" height="68" bgcolor="#CCCCCC"><a href="http://www.nasa.gov/"><img src="./Isentropic Flow Equations_files/logo_nasa.gif" alt="NASA Logo - Web Link to NASA.gov" width="288" height="51" border="0"></a></td>
+          <td width="20" height="68" bgcolor="#CCCCCC"></td>
+          <td width="170" height="68" align="left" valign="middle" bgcolor="#CCCCCC"><p><font color="#333333" size="-2" face="Verdana, Arial, Helvetica, sans-serif"><a class="bodygray" href="https://www.grc.nasa.gov/www/k-12/airplane/isentrop.html#">+
+              Text Only Site</a><br>
+              <a class="bodygray" href="https://www.grc.nasa.gov/www/k-12/airplane/isentrop.html#">+ Non-Flash Version</a><br>
+              <a class="bodygray" href="http://www.nasa.gov/centers/glenn/about/contact_us.html" target="_blank">+
+              Contact Glenn</a></font></p></td>
+          <td width="175" height="68" bgcolor="#006699"><table cellpadding="0" cellspacing="0" border="0"><form name="search" id="search" method="GET" action="http://search.nasa.gov/nasasearch/search/search.jsp"></form><tbody><tr><td rowspan="2" width="20"></td><td colspan="3"><label for="searchfield"><img src="./Isentropic Flow Equations_files/title_find_it_sm.gif" width="92" height="16" alt="FIND IT @ NASA" title="FIND IT @ NASA" border="0"></label></td></tr><tr><td valign="top"><input type="text" size="9" class="search" title="searchfield" id="searchfield" name="nasaInclude" value=""></td><td width="8"><img border="0" alt="" height="1" width="1" src="./Isentropic Flow Equations_files/spacer.gif"></td><td valign="top"><a href="javascript:document.search.submit();"><img name="Go" src="./Isentropic Flow Equations_files/button_go.gif" width="38" height="20" alt="Go" title="Go" border="0"></a></td></tr></tbody></table>
+
+			</td>
+        </tr>
+        <tr>
+          <td colspan="4"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tbody><tr align="center">
+
+     <td><a href="http://www.nasa.gov/about/highlights/index.html">
+           <img src="./Isentropic Flow Equations_files/nav_top_0_0.gif" alt="ABOUT NASA" height="25" width="123" border="0" align="bottom"></a>
+     </td>
+     <td><a href="http://www.nasa.gov/news/highlights/index.html">
+           <img src="./Isentropic Flow Equations_files/nav_top_1_0.gif" alt="NEWS AND EVENTS" height="25" width="140" border="0" align="bottom"></a>
+     </td>
+     <td><a href="http://www.nasa.gov/multimedia/highlights/index.html">
+           <img src="./Isentropic Flow Equations_files/nav_top_2_0.gif" alt="MULTIMEDIA" height="25" width="119" border="0" align="bottom"></a>
+     </td>
+     <td><a href="http://www.nasa.gov/missions/highlights/index.html">
+           <img src="./Isentropic Flow Equations_files/nav_top_3_0.gif" alt="MISSIONS" height="25" width="106" border="0" align="bottom"></a>
+     </td>
+     <td><a href="http://mynasa.nasa.gov/portal/site/mynasa/index.jsp?bandwidth=high">
+           <img src="./Isentropic Flow Equations_files/nav_top_4_0.gif" alt="MyNASA" height="25" width="101" border="0" align="bottom"></a>
+     </td>
+     <td><a href="http://www.nasa.gov/about/career/index.html">
+           <img src="./Isentropic Flow Equations_files/nav_top_5_0.gif" alt="WORK FOR NASA" height="25" width="141" border="0" align="bottom"></a>
+     </td>
+        </tr>
+            </tbody></table></td>
+        </tr>
+        <tr>
+          <td colspan="4">
+<!-- Header Ends -->
+
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tbody><tr>
+                <td>
+
+<center>
+<img src="./Isentropic Flow Equations_files/isentrop.gif" alt="A graphic showing the equations which describe isentropic flow." width="710" height="533" x-claris-useimagewidth="" x-claris-useimageheight="" align="bottom"></center>
+
+<font size="2" face="Arial, Helvetica, sans-serif">
+<p>
+As a gas is forced through a tube, the gas molecules are deflected
+by the walls of the tube. If the speed of the gas is much less than
+the speed of sound of the gas, the
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/fluden.html">density</a>
+of the gas remains constant and the velocity of the flow increases.
+However, as the speed of the flow approaches the
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/sound.html">speed of sound</a>
+we must consider
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/airsim.html">compressibility effects</a>
+on the gas. The density of the gas varies from
+one location to the next.
+Considering flow through a tube, as shown in
+the figure, if the flow is very gradually compressed (area decreases) and then
+gradually expanded (area increases), the flow conditions return to their
+original values. We say that such a process is <b>reversible</b>.
+From a consideration of the
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/thermo2.html">second law</a>
+of thermodynamics,
+a reversible flow maintains a constant value of
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/entropy.html">entropy</a>.
+Engineers call this type of flow an <b>isentropic</b> flow;
+a combination of the Greek word "iso" (same) and entropy.
+</p>
+<p>
+Isentropic flows occur when the change in flow variables is small
+and gradual, such as the ideal flow through the
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/nozzle.html">nozzle</a>
+shown above.
+The generation of
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/sndwave.html">sound waves</a>
+is an isentropic process. A
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/mach.html">supersonic flow</a> that
+is turned while the flow area increases is also isentropic.
+We call this an isentropic
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/expans.html">expansion</a>
+because of the area increase.
+If a supersonic flow is turned
+abruptly and the flow area decreases,
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/shock.html">shock waves</a>
+are generated and the flow is <b>irreversible</b>.
+The isentropic relations are no longer
+valid and the flow is
+governed by the <a href="https://www.grc.nasa.gov/www/k-12/airplane/oblique.html">oblique</a> or <a href="https://www.grc.nasa.gov/www/k-12/airplane/normal.html">normal</a>
+shock relations.
+</p>
+
+<p>
+On this slide we have collected many of the important equations
+which describe an isentropic flow. We begin with the definition
+of the <a href="https://www.grc.nasa.gov/www/k-12/airplane/mach.html">Mach number</a> since this
+parameter
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/machrole.html">appears</a>
+in many of the isentropic flow equations.
+The Mach number <b>M</b> is
+the ratio of the speed of the flow <b>v</b> to the speed of sound <b>a</b>.
+</p>
+<p>
+<left>
+ Eq #1: <br>
+</left>
+</p><center>
+  M = v / a
+</center>
+<p>
+The
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/sound.html">speed of sound</a>, in turn, depends on the
+density <b>r</b>, the
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/pressure.html">pressure</a>, <b>p</b>, the
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/temptr.html">temperature</a>, <b>T</b>,
+and the
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/specheat.html">ratio of specific heats </a>
+<b>gam</b>:
+</p>
+<p>
+<left>
+ Eq #2: <br>
+</left>
+</p><center>
+  a = sqrt(gam * p / r) = sqrt (gam * R * T)
+</center>
+<p>
+where <b>R</b> is the gas constant from the
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/eqstat.html">equations of state</a>. If we begin with the
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/entropy.html">entropy equations</a> for a gas, it can be
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/isndrv.html">shown</a>
+that the pressure and density of an isentropic flow are related as follows:
+</p>
+<p>
+<left>
+ Eq #3: <br>
+</left>
+</p><center>
+  p / r^gam = constant
+</center>
+<p>
+We can determine the
+value of the constant by defining <b>total conditions</b> to be the
+pressure and density when the flow is brought to rest isentropically.
+The "t" subscript used in many of these equations stands for "total
+conditions". (You probably already have some idea of total conditions
+from experience with <a href="https://www.grc.nasa.gov/www/k-12/airplane/bern.html">Bernoulli's equation</a>).
+</p>
+<p>
+<left>
+ Eq #3: <br>
+</left>
+</p><center>
+ p / r^gam = constant = pt / rt^gam
+</center>
+<p>
+Using the <a href="https://www.grc.nasa.gov/www/k-12/airplane/eqstat.html">equation of state</a>, we can easily
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/isndrv.html">derive</a>
+the following relations from equation (3):
+</p>
+<p>
+<left>
+ Eq #4: <br>
+</left>
+</p><center>
+ p / pt =  (r / rt)^gam = (T / Tt)^[gam/(gam-1)]
+</center>
+<p>
+The <a href="https://www.grc.nasa.gov/www/k-12/airplane/dynpress.html">dynamic pressure</a> <b>q</b> is defined to be:
+</p>
+<p>
+<left>
+ Eq #5: <br>
+</left>
+</p><center>
+ q =  (r * v^2) / 2 = (gam * p * M^2) / 2
+</center>
+<p>
+Using the conservation of
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/mass.html">mass</a>,
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/conmo.html">momentum</a>, and
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/thermo1f.html">energy</a>
+and the definition of
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/enthalpy.html">total enthalpy</a>
+in the flow, we can
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/isndrv.html">derive</a> the following relations:
+</p>
+<p>
+<left>
+ Eq #6: <br>
+</left>
+</p><center>
+ p / pt =  [1 +  M^2 * (gam-1)/2]^-[gam/(gam-1)]
+</center>
+<p></p>
+<p>
+<left>
+ Eq #7: <br>
+</left>
+</p><center>
+ T / Tt =  [1 +  M^2 * (gam-1)/2]^-1
+</center>
+<p></p>
+<p>
+<left>
+ Eq #8: <br>
+</left>
+</p><center>
+ r / rt =  [1 +  M^2 * (gam-1)/2]^-[1/(gam-1)]
+</center>
+<p>
+Then considering the
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/mflchk.html">compressible mass flow</a> equation.
+we can <a href="https://www.grc.nasa.gov/www/k-12/airplane/astar.html">derive</a>:
+</p>
+<p>
+<left>
+ Eq #9: <br>
+</left>
+</p><center>
+  A / A* =  {[1 +  M^2 * (gam-1)/2]^[(gam+1)/(gam-1)/2]}*{[(gam+1)/2]^-[(gam+1)/(gam-1)/2]} / M
+</center>
+<p>
+The starred conditions occur
+when the flow is <b>choked</b> and the Mach number is equal to one.
+Notice the important role that the Mach number plays in all the
+equations on the right side of this slide. If the Mach number of the
+flow is determined, all of the other flow relations can be
+determined. Similarly, determining any flow relation (pressure ratio
+for example) will fix the Mach number and set all the other flow
+conditions.</p>
+<p>
+Here is a JavaScript program that solves the equations given on this slide.
+</p>
+
+
+<div id="content-wrapper">
+  <!-- header -->
+    <header>
+      <h1>Isentropic Flow Calculator</h1>
+    </header>
+  <!-- header -->
+    <!-- container -->
+      <div id="container">
+    <div class="widget">
+      <div id="list">
+        <label for="gamma">Gamma</label>
+          <div id="sonicDiv">
+          <select class="check" name="sonic" id="sonic">
+            <option value="0">supersonic</option>
+            <option value="1">Subsonic</option>
+          </select>
+        </div>
+          <div id="inputVar">
+            <select class="check" name="inputs" id="inputvals">
+              <option value="0">Mach Number - M =</option>
+              <option value="1">Pressure Ratio p/pt =</option>
+              <option value="2">Temp Ratio T/Tt =</option>
+              <option value="3">Density Ratio rho/rhot =</option>
+              <option value="4">Area Ratio A/A* =</option>
+              <option value="5">Dyn Press Ratio q/p =</option>
+              <option value="6">Flow per Area Wcor/A =</option>
+              <option value="7">Mach Angle mu =</option>
+              <option value="8">Prandtl-Meyer Angle nu =</option>
+            </select>
+          </div>
+      </div>
+    </div>
+      <button id="Calculation" style="cursor: pointer" class="ui-button ui-corner-all ui-widget">Compute</button>
+  </div>
+  <div id="userInput">
+  <div id="inputTitle">Input</div>
+    <div id="gamma">
+      <input id="gamInput">
+    </div>
+    <div id="isenInput">
+      <input id="input1">
+    </div>
+</div>
+    <!-- container -->
+    <div id="outputTitle">Output</div>
+    <!-- output -->
+  <div id="outputA">
+    <div id="outputMach">Mach</div>
+    <div id="outputMAng">Mach Angle</div>
+    <div id="outputPM">P-M Ang</div>
+    <div id="output1">2.000</div>
+    <div id="output2">30.000</div>
+    <div id="output3">26.380</div>
+  </div>
+  <div id="outputB">
+    <div id="outputP">p/pt</div>
+    <div id="outputT">T/Tt</div>
+    <div id="outputD">rho/rhot</div>
+    <div id="output4">0.1278</div>
+    <div id="output5">0.556</div>
+    <div id="output6">0.23005</div>
+  </div>
+  <div id="outputC">
+    <div id="outputDyn">q/p</div>
+    <div id="outputArea">A/A*</div>
+    <div id="outputW">Wcor/A</div>
+    <div id="output7">2.800</div>
+    <div id="output8">1.688</div>
+    <div id="output9">0.20354</div>
+  </div>
+    <!-- output -->
+</div>
+<!-- content-wrapper -->
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+<center>
+
+<noscript>
+<p>
+This page shows an interactive Java applet to learn how isentropic flows
+behave by varying the individual flow variables.
+</p>
+</noscript>
+</center>
+You select an input variable by using the choice button labeled <b>Input
+Variable</b>. Next to the selection, you then type in the value
+of the selected variable. When you hit the red <b> COMPUTE</b> button,
+the output values change. Some of the variables (like the area ratio) are double
+valued. This means that for the same area ratio, there is a subsonic
+and a supersonic solution. The choice button at the right top selects
+the solution that is presented.
+The variable "Wcor/A" is the
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/wcora.html">corrected airflow per unit area</a>
+function which can be derived from the
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/mflchk.html">compressible mass flow</a>.
+This variable is only a function of the Mach number of the flow. The
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/machang.html">Mach angle</a> and
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/pranmyer.html">Prandtl-Meyer angle</a>
+are also functions of the Mach number.
+These additional variables are used in the design of high speed
+inlets, nozzles and ducts.
+<p></p>
+<p>
+If you are an experienced user of this calculator, you can use a
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/ieisen.html">sleek version</a>
+of the program which loads faster on your computer and does not include these instructions.
+You can also download your own copy of the program to run off-line by clicking on this button:
+</p> <p>
+<a href="https://www.grc.nasa.gov/www/k-12/UndergradProgs/index.htm"><img src="./Isentropic Flow Equations_files/butd.gif" alt="Button to Download a Copy of the Program" width="145" height="31" border="0" align="bottom"></a>
+</p>
+
+<hr>
+<b>Activities:</b>
+<br>
+
+<hr>
+<b><a href="https://www.grc.nasa.gov/www/k-12/airplane/guided.htm">Guided Tours</a></b>
+<ul>
+  <li>
+        <a href="https://www.grc.nasa.gov/www/k-12/airplane/mach.html"><img src="./Isentropic Flow Equations_files/butpre.gif" alt="Button to Display Previous Page" width="100" height="20" border="0" align="top"></a>
+    <b> Compressible Aerodynamics:</b>
+        <a href="https://www.grc.nasa.gov/www/k-12/airplane/mflchk.html"><img src="./Isentropic Flow Equations_files/butnex.gif" alt="Button to Display Next Page" width="100" height="20" border="0" align="top"></a>
+  </li>
+  <li>
+        <a href="https://www.grc.nasa.gov/www/k-12/airplane/sound.htm"><img src="./Isentropic Flow Equations_files/butpre.gif" alt="Button to Display Previous Page" width="100" height="20" border="0" align="top"></a>
+    <b>  Sound Waves:</b>
+        <a href="https://www.grc.nasa.gov/www/k-12/airplane/doppler.html"><img src="./Isentropic Flow Equations_files/butnex.gif" alt="Button to Display Next Page" width="100" height="20" border="0" align="top"></a>
+  </li>
+
+  <li>
+        <a href="https://www.grc.nasa.gov/www/k-12/airplane/guided.htm"><img src="./Isentropic Flow Equations_files/butpre.gif" alt="Button to Display Previous Page" width="100" height="20" border="0" align="top"></a>
+    <b> Isentropic Flow Calculator:</b>
+        <a href="https://www.grc.nasa.gov/www/k-12/airplane/mflchk.html"><img src="./Isentropic Flow Equations_files/butnex.gif" alt="Button to Display Next Page" width="100" height="20" border="0" align="top"></a>
+  </li>
+  <li>
+        <a href="https://www.grc.nasa.gov/www/k-12/airplane/mflchk.html"><img src="./Isentropic Flow Equations_files/butpre.gif" alt="Button to Display Previous Page" width="100" height="20" border="0" align="top"></a>
+    <b> Nozzle Simulator:</b>
+        <a href="https://www.grc.nasa.gov/www/k-12/airplane/guided.htm"><img src="./Isentropic Flow Equations_files/butndtr.gif" alt="Button to Return to Guided Tour Page" width="101" height="21" border="0" align="top"></a>
+  </li>
+</ul>
+
+<hr>
+
+<br>
+<p><b>Navigation .. </b></p>
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/shortc.html"><img src="./Isentropic Flow Equations_files/butci.gif" alt="Button to Display Hi Speed Aero Index" width="151" height="32" border="0" align="bottom"></a>
+
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/short.html"><img src="./Isentropic Flow Equations_files/butai.gif" alt="Button to Display Aerodynamics Index" width="163" height="31" border="0" align="bottom"></a>
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/shortp.html"><img src="./Isentropic Flow Equations_files/butpi.gif" alt="Button to Display Propulsion Index" width="145" height="31" border="0" align="bottom"></a>
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/shortr.html"><img src="./Isentropic Flow Equations_files/butmr.gif" alt="Button to Display Model Rocket Index" width="145" height="31" border="0" align="bottom"></a>
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/shorth.html"><img src="./Isentropic Flow Equations_files/buthi.gif" alt="Button to Display Hypersonic Aero Index" width="151" height="31" border="0" align="bottom"></a>
+
+<br>
+<dl>
+   <dt><a href="https://www.grc.nasa.gov/www/k-12/airplane/index.html">Beginner's Guide Home Page</a></dt>
+</dl>
+
+</font>
+
+         	</td>
+              </tr>
+            </tbody></table>
+<!-- Footer Begins -->
+
+            <p>&nbsp;</p>
+		  </td>
+        </tr>
+        <tr bgcolor="#CCCCCC">
+          <td colspan="4"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tbody><tr>
+
+                <td width="155" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="http://www.firstgov.gov/"><img src="./Isentropic Flow Equations_files/logo_first_gov.gif" alt="First Gov Image" width="125" height="42" border="0"></a><a></a></td>
+                <td width="251"><p><font size="-1" face="Verdana, Arial, Helvetica, sans-serif"><br>
+                    <font size="-2">
+                <a class="bodygray" href="http://www.hq.nasa.gov/office/oig/hq/hotline.html" target="_blank">+ Inspector General Hotline</a><br>
+                <a class="bodygray" href="http://www.hq.nasa.gov/office/codee/nofear.html" target="_blank">+ Equal Employment Opportunity Data Posted Pursuant to the No Fear Act</a><br>
+                <a class="bodygray" href="http://www.nasa.gov/about/budget/index.html" target="_blank">+ Budgets, Strategic Plans and Accountability Reports</a><br>
+                <a class="bodygray" href="http://www.hq.nasa.gov/office/pao/FOIA/agency/" target="_blank">+ Freedom of Information Act</a><br>
+                <a class="bodygray" href="http://www.nasa.gov/about/highlights/HP_Management.html" target="_blank">+ The President's Management Agenda</a><br>
+                <a class="bodygray" href="http://www.nasa.gov/about/highlights/HP_Privacy.html" target="_blank">+ NASA Privacy Statement, Disclaimer,</a><br>
+                <a class="bodygray" href="http://www.nasa.gov/about/highlights/HP_Privacy.html" target="_blank"> and Accessibility Certification</a></font></font></p>
+                  <p>&nbsp;</p></td>
+
+                <td align="right" valign="top"><img src="./Isentropic Flow Equations_files/logo_nasa_self.gif" alt="NASA Logo" width="49" height="48">&nbsp;&nbsp;&nbsp;</td>
+                <td width="200" valign="top"><font size="-2" face="Verdana, Arial, Helvetica, sans-serif"><br>
+                  <font color="#333333">Editor: <a class="bodygray" href="mailto:nancy.r.hall@nasa.gov">Nancy Hall</a><br>
+                  NASA Official: <a class="bodygray" href="mailto:nancy.r.hall@nasa.gov">Nancy Hall</a><br>
+                  Last Updated:   May 13 2021</font><br>
+                  <a class="bodygray" href="http://www.nasa.gov/centers/glenn/about/contact_us.html" target="_blank">+
+                  Contact Glenn</a></font></td>
+              </tr>
+            </tbody></table></td>
+        </tr>
+      </tbody></table></td>
+  </tr>
+</tbody></table>
+
+<!-- Footer Ends -->
+
+<!-- We participate in the US government's analytics program. See the data at analytics.usa.gov. -->
+<script async="" type="text/javascript" src="./Isentropic Flow Equations_files/Universal-Federated-Analytics-Min.js.download" id="_fed_an_ua_tag"></script>
+
+
+
+</body></html>

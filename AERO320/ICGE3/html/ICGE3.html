@@ -1,0 +1,286 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>ICGE3</title><meta name="generator" content="MATLAB 9.12"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-12-02"><meta name="DC.source" content="ICGE3.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#3">multiple ps</a></li><li><a href="#4">functions</a></li></ul></div><pre class="codeinput">clear <span class="string">all</span>
+close <span class="string">all</span>
+clc
+</pre><pre class="codeinput">X0 = [.5;0];
+g = 9.8;
+l = 1;
+p = .25;
+m = 1;
+B = .5;
+tspan = [0,40];
+
+options = odeset(<span class="string">'RelTol'</span>, 1e-8,<span class="string">'AbsTol'</span>,1e-8);
+[t,X]=ode45(@eom,tspan,X0,options,l,p,B,m,g);
+
+<span class="comment">% state phase</span>
+figure
+plot(X(:,1),X(:,2))
+xlabel(<span class="string">"theta"</span>)
+ylabel(<span class="string">"thetadot"</span>)
+
+<span class="comment">% state time 3d</span>
+<span class="comment">% figure</span>
+<span class="comment">% plot3(X(:,1),X(:,2),t)</span>
+<span class="comment">% xlabel("theta")</span>
+<span class="comment">% ylabel("thetadot [1/s]")</span>
+<span class="comment">% zlabel("time [s]")</span>
+
+<span class="comment">% state time 2d</span>
+figure
+plot(t,X(:,1),t,X(:,2))
+legend(<span class="string">"theta"</span>,<span class="string">"thetadot [1/s]"</span>)
+xlabel(<span class="string">"time [s]"</span>)
+</pre><img vspace="5" hspace="5" src="ICGE3_01.png" alt=""> <img vspace="5" hspace="5" src="ICGE3_02.png" alt=""> <h2 id="3">multiple ps</h2><pre class="codeinput">ps = -.25:.125:.25;
+n = length(ps);
+
+X0 = [.5;0];
+g = 9.8;
+l = 1;
+m = 1;
+B = .5;
+tspan = [0,40];
+options = odeset(<span class="string">'RelTol'</span>, 1e-8,<span class="string">'AbsTol'</span>,1e-8);
+
+<span class="comment">%calulate X at each p to test</span>
+runs = {};
+<span class="keyword">for</span> i = 1:n
+    p = ps(i);
+    [t,X]=ode45(@eom,tspan,X0,options,l,p,B,m,g);
+    runs{i,1} = X;
+    runs{i,2} = t;
+<span class="keyword">end</span>
+
+
+<span class="comment">%%%%%%%%%% phase portrait</span>
+figure
+hold <span class="string">on</span>
+<span class="keyword">for</span> i = 1:n
+<span class="comment">%     plot(runs{i,1}(:,1),runs{i,1}(:,2))</span>
+    plot3(runs{i,1}(:,1),runs{i,1}(:,2),runs{i,2})
+<span class="keyword">end</span>
+xlabel(<span class="string">"theta"</span>)
+ylabel(<span class="string">"thetadot [1/s]"</span>)
+legend(<span class="string">"p = "</span>+string(ps))
+<span class="comment">%%%%%%%%%%</span>
+
+
+<span class="comment">%%%%%%%%%% all theta</span>
+temp1 = <span class="string">" theta"</span>;
+temp2 = [];
+figure
+hold <span class="string">on</span>
+<span class="keyword">for</span> i = 1:n
+    plot(runs{i,2},runs{i,1}(:,1));
+    temp2 = [temp2,<span class="string">"p = "</span>+string(ps(i))+temp1];
+<span class="keyword">end</span>
+legend(temp2)
+xlabel(<span class="string">"time [s]"</span>)
+clear <span class="string">temp2</span> <span class="string">temp1</span>
+<span class="comment">%%%%%%%%%%</span>
+
+<span class="comment">%%%%%%%%%% all thetadot</span>
+temp1 = <span class="string">" thetadot"</span>;
+temp2 = [];
+figure
+hold <span class="string">on</span>
+<span class="keyword">for</span> i = 1:n
+    plot(runs{i,2},runs{i,1}(:,2));
+    temp2 = [temp2,<span class="string">"p = "</span>+string(ps(i))+temp1];
+<span class="keyword">end</span>
+legend(temp2)
+xlabel(<span class="string">"time [s]"</span>)
+ylabel(<span class="string">"[1/s]"</span>)
+clear <span class="string">temp2</span> <span class="string">temp1</span>
+<span class="comment">%%%%%%%%%%</span>
+</pre><h2 id="4">functions</h2><pre class="codeinput"><span class="keyword">function</span> Xdot = eom(t,X,l,p,B,m,g);
+theta = X(1);
+thetadot = X(2);
+Xdot = [
+    thetadot
+    -p*g*(sin(theta))/(l^2+p^2) - B*thetadot/(2*m*(l^2+p^2));
+    ];
+<span class="keyword">end</span>
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%
+clear all
+close all
+clc
+%%
+X0 = [.5;0];
+g = 9.8;
+l = 1;
+p = .25;
+m = 1;
+B = .5;
+tspan = [0,40];
+
+options = odeset('RelTol', 1e-8,'AbsTol',1e-8);
+[t,X]=ode45(@eom,tspan,X0,options,l,p,B,m,g);
+
+% state phase
+figure
+plot(X(:,1),X(:,2))
+xlabel("theta")
+ylabel("thetadot")
+
+% state time 3d 
+% figure
+% plot3(X(:,1),X(:,2),t)
+% xlabel("theta")
+% ylabel("thetadot [1/s]")
+% zlabel("time [s]")
+
+% state time 2d
+figure
+plot(t,X(:,1),t,X(:,2))
+legend("theta","thetadot [1/s]")
+xlabel("time [s]")
+
+
+%% multiple ps
+ps = -.25:.125:.25;
+n = length(ps);
+
+X0 = [.5;0];
+g = 9.8;
+l = 1;
+m = 1;
+B = .5;
+tspan = [0,40];
+options = odeset('RelTol', 1e-8,'AbsTol',1e-8);
+
+%calulate X at each p to test
+runs = {};
+for i = 1:n
+    p = ps(i);
+    [t,X]=ode45(@eom,tspan,X0,options,l,p,B,m,g);
+    runs{i,1} = X;
+    runs{i,2} = t;
+end
+
+
+%%%%%%%%%% phase portrait
+figure
+hold on
+for i = 1:n
+%     plot(runs{i,1}(:,1),runs{i,1}(:,2))
+    plot3(runs{i,1}(:,1),runs{i,1}(:,2),runs{i,2})
+end
+xlabel("theta")
+ylabel("thetadot [1/s]")
+legend("p = "+string(ps))
+%%%%%%%%%%
+
+
+%%%%%%%%%% all theta
+temp1 = " theta";
+temp2 = [];
+figure
+hold on
+for i = 1:n
+    plot(runs{i,2},runs{i,1}(:,1));
+    temp2 = [temp2,"p = "+string(ps(i))+temp1];
+end
+legend(temp2)
+xlabel("time [s]")
+clear temp2 temp1
+%%%%%%%%%%
+
+%%%%%%%%%% all thetadot
+temp1 = " thetadot";
+temp2 = [];
+figure
+hold on
+for i = 1:n
+    plot(runs{i,2},runs{i,1}(:,2));
+    temp2 = [temp2,"p = "+string(ps(i))+temp1];
+end
+legend(temp2)
+xlabel("time [s]")
+ylabel("[1/s]")
+clear temp2 temp1
+%%%%%%%%%%
+
+
+
+%% functions
+function Xdot = eom(t,X,l,p,B,m,g);
+theta = X(1);
+thetadot = X(2);
+Xdot = [
+    thetadot
+    -p*g*(sin(theta))/(l^2+p^2) - B*thetadot/(2*m*(l^2+p^2));
+    ];
+end
+##### SOURCE END #####
+--></body></html>

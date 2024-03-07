@@ -1,0 +1,10 @@
+Monday, June 3 2010
+Experiment 1
+
+Time [s]	Position [ft]
+0		0
+2		1
+4		4
+6		10
+8		17
+10		28

@@ -1,0 +1,199 @@
+header {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+h1 {
+  position; absolute;
+  font-size: 14px;
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  font-weight: normal;
+}
+#container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+#content-wrapper {
+  position: absolute;
+  align-self: center;
+  width: 500px;
+  height: 300px;
+}
+select {
+  width: 25%;
+  font-size: 12px;
+  z-index: 1;
+}
+.widget {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+label[for="gamma"]{
+  position: absolute;
+  left: 57%;
+  font-size: 12px;
+  top: 32%;
+}
+#sonic{
+  position: absolute;
+  top: 18%;
+  left: 66%;
+}
+#inputvals{
+  position: absolute;
+  top: 40%;
+  left: 40%;
+}
+#input1{
+  position: absolute;
+  top: 39%;
+  left: 66%;
+}
+#gamInput{
+  position: absolute;
+  top: 31%;
+  left: 66%;
+}
+#inputTitle {
+  position: absolute;
+  top: 28%;
+  left: 10%;
+  font-size: 12px;
+  color: red;
+}
+#outputTitle {
+  position: absolute;
+  font-size: 12px;
+  left: 10%;
+  top: 61%;
+  color: blue;
+}
+
+#Calculation {
+  color: white;
+  background: red;
+  font-size: 10px;
+  width: 25%;
+  height: 10%;
+  left: 55%;
+  top: 50%;
+  position: absolute;
+  z-index: 1;
+}
+
+#outputMach {
+  position: absolute;
+  top: 70%;
+  left: 9%;
+}
+#outputMAng {
+  position: absolute;
+  top: 77%;
+}
+#outputPM {
+  position: absolute;
+  top: 84%;
+  left: 4%;
+}
+#output1,
+#output2,
+#output3 {
+  background: black;
+  color: yellow;
+  position: absolute;
+  text-align: left;
+  left: 18%;
+  width: 20%;
+  height: 6%;
+}
+#output1 {
+  top: 70%;
+}
+#output2 {
+  top: 77%;
+}
+#output3 {
+  top: 84%;
+}
+
+#outputP {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+}
+#outputT {
+  position: absolute;
+  top: 77%;
+  left: 49%;
+}
+#outputD {
+  position: absolute;
+  top: 84%;
+  left: 45%;
+}
+#output4,
+#output5,
+#output6 {
+  background: black;
+  color: yellow;
+  position: absolute;
+  text-align: left;
+  left: 56%;
+  width: 20%;
+  height: 6%;
+}
+#output4 {
+  top: 70%;
+}
+#output5 {
+  top: 77%;
+}
+#output6 {
+  top: 84%;
+}
+
+#outputDyn {
+  position: absolute;
+  top: 70%;
+  left: 91%;
+}
+#outputArea {
+  position: absolute;
+  top: 77%;
+  left: 88%;
+}
+#outputW {
+  position: absolute;
+  top: 84%;
+  left: 85%;
+}
+#output7,
+#output8,
+#output9 {
+  background: black;
+  color: yellow;
+  position: absolute;
+  text-align: left;
+  left: 97%;
+  width: 20%;
+  height: 6%;
+}
+#output7 {
+  top: 70%;
+}
+#output8 {
+  top: 77%;
+}
+#output9 {
+  top: 84%;
+}
+
+#external{
+  position: absolute;
+  top: 50%;
+}

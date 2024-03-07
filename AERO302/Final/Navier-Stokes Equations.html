@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0053)https://www.grc.nasa.gov/www/k-12/airplane/nseqs.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Navier-Stokes Equations</title>
+
+<meta name="keywords" content="gases, equations, mathematics, fluid dynamics, conservation, conservation laws, momentum, conservation of momentum, Navier-Stokes equations, conservation of mass, gradients, aerodynamics, differential equations, partial derivitives, partial differential equation, velocity, density, pressure, convection, diffusion, Reynold&#39;s number, viscosity, turbulence models, conservation of energy, aerodynamics
+">
+
+<link href="./Navier-Stokes Equations_files/portal.css" rel="stylesheet" type="text/css">
+</head>
+
+<body bgcolor="#000000">
+<table width="730" border="0" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tbody><tr>
+    <td>
+
+<!-- Header Begins-->
+
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tbody><tr> 
+          <td width="365" height="68" bgcolor="#CCCCCC"><a href="http://www.nasa.gov/"><img src="./Navier-Stokes Equations_files/logo_nasa.gif" alt="NASA Logo - Web Link to NASA.gov" width="288" height="51" border="0"></a></td>
+          <td width="20" height="68" bgcolor="#CCCCCC"></td>
+          <td width="170" height="68" align="left" valign="middle" bgcolor="#CCCCCC"><p><font color="#333333" size="-2" face="Verdana, Arial, Helvetica, sans-serif"><a class="bodygray" href="https://www.grc.nasa.gov/www/k-12/airplane/nseqs.html#">+ 
+              Text Only Site</a><br>
+              <a class="bodygray" href="https://www.grc.nasa.gov/www/k-12/airplane/nseqs.html#">+ Non-Flash Version</a><br>
+              <a class="bodygray" href="http://www.nasa.gov/centers/glenn/about/contact_us.html" target="_blank">+ 
+              Contact Glenn</a></font></p></td>
+          <td width="175" height="68" bgcolor="#006699"><table cellpadding="0" cellspacing="0" border="0"><form name="search" id="search" method="GET" action="http://search.nasa.gov/nasasearch/search/search.jsp"></form><tbody><tr><td rowspan="2" width="20"></td><td colspan="3"><label for="searchfield"><img src="./Navier-Stokes Equations_files/title_find_it_sm.gif" width="92" height="16" alt="FIND IT @ NASA" title="FIND IT @ NASA" border="0"></label></td></tr><tr><td valign="top"><input type="text" size="9" class="search" title="searchfield" id="searchfield" name="nasaInclude" value=""></td><td width="8"><img border="0" alt="" height="1" width="1" src="./Navier-Stokes Equations_files/spacer.gif"></td><td valign="top"><a href="javascript:document.search.submit();"><img name="Go" src="./Navier-Stokes Equations_files/button_go.gif" width="38" height="20" alt="Go" title="Go" border="0"></a></td></tr></tbody></table>
+			
+			</td>
+        </tr>
+        <tr> 
+          <td colspan="4"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tbody><tr align="center"> 
+                
+     <td><a href="http://www.nasa.gov/about/highlights/index.html">
+           <img src="./Navier-Stokes Equations_files/nav_top_0_0.gif" alt="ABOUT NASA" height="25" width="123" border="0" align="bottom"></a>
+     </td>
+     <td><a href="http://www.nasa.gov/news/highlights/index.html">
+           <img src="./Navier-Stokes Equations_files/nav_top_1_0.gif" alt="NEWS AND EVENTS" height="25" width="140" border="0" align="bottom"></a>
+     </td>
+     <td><a href="http://www.nasa.gov/multimedia/highlights/index.html">
+           <img src="./Navier-Stokes Equations_files/nav_top_2_0.gif" alt="MULTIMEDIA" height="25" width="119" border="0" align="bottom"></a>
+     </td>
+     <td><a href="http://www.nasa.gov/missions/highlights/index.html">
+           <img src="./Navier-Stokes Equations_files/nav_top_3_0.gif" alt="MISSIONS" height="25" width="106" border="0" align="bottom"></a>
+     </td>
+     <td><a href="http://mynasa.nasa.gov/portal/site/mynasa/index.jsp?bandwidth=high">
+           <img src="./Navier-Stokes Equations_files/nav_top_4_0.gif" alt="MyNASA" height="25" width="101" border="0" align="bottom"></a>
+     </td>
+     <td><a href="http://www.nasa.gov/about/career/index.html">
+           <img src="./Navier-Stokes Equations_files/nav_top_5_0.gif" alt="WORK FOR NASA" height="25" width="141" border="0" align="bottom"></a>
+     </td>
+        </tr>
+            </tbody></table></td>
+        </tr>
+        <tr> 
+          <td colspan="4"> 
+<!-- Header Ends -->			
+
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tbody><tr> 
+                <td>
+<font size="2" face="Arial, Helvetica, sans-serif">
+
+<center><img src="./Navier-Stokes Equations_files/nseqs.gif" alt="The Navier-Stokes equations of fluid dynamics in three-dimensional,
+ unsteady form." width="710" height="532" align="bottom"></center>
+
+<p>
+On this slide we show the three-dimensional unsteady
+form of the <b>Navier-Stokes Equations</b>.
+These equations describe how the velocity,
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/pressure.html">pressure</a>,
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/temptr.html">temperature</a>,
+and
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/fluden.html">density</a>
+of a moving
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/state.html">fluid</a>
+are related.
+The equations were derived independently by G.G. Stokes, in
+England, and M. Navier, in France, in the early 1800's.
+The equations are extensions of the
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/eulereqs.html">Euler Equations</a>
+and include the effects of
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/airsim.html">viscosity</a> on the flow.
+These equations are very complex, yet undergraduate engineering students
+are taught how to derive them in a process very similar to the
+derivation that we present on the
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/conmo.html">conservation of momentum</a>
+web page.
+</p>
+<p>
+The equations are a set of coupled <b>differential equations</b>
+and could, in theory, be solved for a given flow problem by using methods
+from <b>calculus</b>.
+But, in practice, these equations are too difficult to solve analytically.
+In the past, engineers made further approximations and simplifications
+to the equation set until they had a group of equations that they could solve.
+Recently, high speed computers have been used to solve approximations
+to the equations using a variety of techniques like finite difference, finite
+volume, finite element, and spectral methods.
+This area of study is called <b>Computational Fluid Dynamics</b> or <b>CFD</b>.
+</p>
+<p>
+The Navier-Stokes equations consists of a time-dependent
+continuity equation for
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/mass.html">conservation of mass</a>,
+three time-dependent
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/conmo.html">conservation of momentum</a>
+equations and a time-dependent
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/thermo1f.html">conservation of energy</a> equation.
+There are four independent variables in the problem, the
+<b>x</b>, <b>y</b>, and <b>z</b> spatial coordinates of some domain,
+and the time <b>t</b>. There are six dependent
+variables; the pressure <b>p</b>, density <b>r</b>,
+and temperature <b>T</b> (which is contained in the energy equation
+through the total energy <b>Et</b>) and three
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/vectpart.html">components</a>
+of the velocity
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/vectors.html">vector</a>; the <b>u</b> component is in the <b>x</b>
+direction, the <b>v</b> component is in the <b>y</b> direction,
+and the <b>w</b> component is in the <b>z</b> direction,
+All of the dependent variables are
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/function.html">functions</a> of all four independent variables.
+The differential equations are therefore <b>partial</b> differential equations
+and not the <b>ordinary</b> differential equations that you study in a
+beginning calculus class.
+</p>
+<p>
+You will notice that the differential symbol is different than the usual
+"d /dt" or "d /dx" that you see for ordinary differential equations. The symbol
+"<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">" is
+is used to indicate <b>partial derivatives</b>.
+The symbol indicates that we are to hold all of the
+independent variables fixed, except the variable next to symbol, when computing
+a derivative. The set of equations are:
+</p>
+<center>
+<p>
+ Continuity: <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">r/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">t + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * u)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">x + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * v)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">y + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * w)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">z = 0
+</p>
+<p>
+ X - Momentum: <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * u)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">t + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * u^2)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">x + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * u * v)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">y + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * u * w)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">z = - <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">p/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">x
+</p>
+<p> + 1/Re * { <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">tauxx/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">x + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">tauxy/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">y + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">tauxz/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">z}
+</p>
+<p>
+ Y - Momentum: <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * v)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">t + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * u * v)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">x + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * v^2)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">y + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * v * w)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">z = - <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">p/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">y
+</p>
+<p> + 1/Re * { <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">tauxy/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">x + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">tauyy/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">y + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">tauyz/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">z}
+</p>
+<p>
+ Z - Momentum: <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * w)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">t + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * u * w)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">x + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * v * w)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">y + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * w^2)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">z = - <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">p/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">z
+</p>
+<p> + 1/Re * { <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">tauxz/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">x + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">tauyz/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">y + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">tauzz/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">z}
+</p>
+<p>
+ Energy: <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">Et/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">t + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(u
+* Et)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">x + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(v * Et)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">y + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(w * Et)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">z = - <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * u)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">x - <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * v)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">y - <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(r * w)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">z
+</p>
+<p> - 1/(Re*Pr) * { <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">qx/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">x + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">qy/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">y + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">qz/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">z}
+</p>
+<p> + 1/Re * {<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(u * tauxx + v * tauxy + w * tauxz)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">x + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(u * tauxy + v * tauyy + w * tauyz)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">y + <img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">(u * tauxz + v * tauyz + w * tauzz)/<img src="./Navier-Stokes Equations_files/del.gif" alt="partial" align="middle">z}
+</p>
+</center>
+<p>
+where Re is the
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/airsim.html">Reynolds number</a>
+which is a similarity parameter that is the ratio of the scaling of the
+inertia of the flow to the viscous forces in the flow. The <b>q</b>
+variables are the heat flux components and Pr is the Prandtl number
+which is a similarity parameter that is the ratio of the viscous
+stresses to the thermal stresses.
+The <b>tau</b> variables are components of the <b>stress tensor</b>.
+A tensor is generated when you multiply two vectors in a certain
+way. Our velocity vector has three components; the stress tensor has
+nine components. Each component of the stress tensor is itself a
+second derivative of the velocity components.
+</p>
+<p>
+The terms on the left hand side of the momentum equations are called
+the <b>convection terms</b> of the equations.
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/gasprop.html">Convection</a>
+is a physical process
+that occurs in a flow of gas in which some property is transported
+by the ordered motion of the flow.
+The terms on the right hand side of the momentum equations that
+are multiplied by the inverse Reynolds number are called
+the <b>diffusion terms</b>.
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/gasprop.html">Diffusion</a>
+is a physical process
+that occurs in a flow of gas in which some property is transported
+by the random motion of the molecules of the gas.
+Diffusion is related to the stress tensor and to the viscosity
+of the gas. Turbulence, and the generation of
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/boundlay.html">boundary layers</a>,
+are the result of diffusion in the flow.
+The Euler equations contain only the convection terms
+of the Navier-Stokes equations and can not, therefore, model
+boundary layers. There is a special simplification of the Navier-Stokes
+equations that describe boundary layer flows.
+</p>
+<p>
+Notice that all of the dependent variables appear in each equation.
+To solve a flow
+problem, you have to solve all five equations simultaneously; that is
+why we call this a <b>coupled</b> system of equations.
+There are actually some other
+equation that are required to solve this system. We only show five equations
+for six unknowns. An
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/eqstat.html">equation of state</a>
+relates the pressure, temperature, and density of the gas.
+And we need to specify all of the terms of the stress tensor.
+In CFD the stress tensor terms are often approximated by a turbulence
+model.
+</p>
+<p>
+</p><hr>
+<b>Activities:</b>
+<br>
+<hr>
+<b><a href="https://www.grc.nasa.gov/www/k-12/airplane/guided.htm">Guided Tours</a></b>
+<ul>
+</ul>
+
+<hr>
+
+<br>
+<p><b>Navigation .. </b></p>
+
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/short.html"><img src="./Navier-Stokes Equations_files/butai.gif" alt="Button to Display Aerodynamics Index" width="163" height="31" border="0" align="bottom"></a>
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/shortp.html"><img src="./Navier-Stokes Equations_files/butpi.gif" alt="Button to Display Propulsion Index" width="145" height="31" border="0" align="bottom"></a>
+<a href="https://www.grc.nasa.gov/www/k-12/airplane/shorth.html"><img src="./Navier-Stokes Equations_files/buthi.gif" alt="Button to Display Hypersonic Aero Index" width="151" height="31" border="0" align="bottom"></a>
+
+<br>
+<dl>
+   <dt><a href="https://www.grc.nasa.gov/www/k-12/airplane/index.html">Beginner's Guide Home Page</a></dt>
+</dl>
+
+ 
+</font>
+					
+         	</td>
+              </tr>
+            </tbody></table>
+<!-- Footer Begins -->		  
+
+            <p>&nbsp;</p>
+		  </td>
+        </tr>
+        <tr bgcolor="#CCCCCC"> 
+          <td colspan="4"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tbody><tr>
+
+                <td width="155" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="http://www.firstgov.gov/"><img src="./Navier-Stokes Equations_files/logo_first_gov.gif" alt="First Gov Image" width="125" height="42" border="0"></a><a></a></td>
+                <td width="251"><p><font size="-1" face="Verdana, Arial, Helvetica, sans-serif"><br>
+                    <font size="-2">
+                <a class="bodygray" href="http://www.hq.nasa.gov/office/oig/hq/hotline.html" target="_blank">+ Inspector General Hotline</a><br>
+                <a class="bodygray" href="http://www.hq.nasa.gov/office/codee/nofear.html" target="_blank">+ Equal Employment Opportunity Data Posted Pursuant to the No Fear Act</a><br>
+                <a class="bodygray" href="http://www.nasa.gov/about/budget/index.html" target="_blank">+ Budgets, Strategic Plans and Accountability Reports</a><br>
+                <a class="bodygray" href="http://www.hq.nasa.gov/office/pao/FOIA/agency/" target="_blank">+ Freedom of Information Act</a><br>
+                <a class="bodygray" href="http://www.nasa.gov/about/highlights/HP_Management.html" target="_blank">+ The President's Management Agenda</a><br>
+                <a class="bodygray" href="http://www.nasa.gov/about/highlights/HP_Privacy.html" target="_blank">+ NASA Privacy Statement, Disclaimer,</a><br>
+                <a class="bodygray" href="http://www.nasa.gov/about/highlights/HP_Privacy.html" target="_blank"> and Accessibility Certification</a></font></font></p>
+                  <p>&nbsp;</p></td>
+
+                <td align="right" valign="top"><img src="./Navier-Stokes Equations_files/logo_nasa_self.gif" alt="NASA Logo" width="49" height="48">&nbsp;&nbsp;&nbsp;</td>
+                <td width="200" valign="top"><font size="-2" face="Verdana, Arial, Helvetica, sans-serif"><br>
+                  <font color="#333333">Editor: <a class="bodygray" href="mailto:nancy.r.hall@nasa.gov">Nancy Hall</a><br> 
+                  NASA Official: <a class="bodygray" href="mailto:nancy.r.hall@nasa.gov">Nancy Hall</a><br> 
+                  Last Updated:   May 13 2021</font><br>
+                  <a class="bodygray" href="http://www.nasa.gov/centers/glenn/about/contact_us.html" target="_blank">+ 
+                  Contact Glenn</a></font></td>
+              </tr>
+            </tbody></table></td>
+        </tr>
+      </tbody></table></td>
+  </tr>
+</tbody></table>
+
+<!-- Footer Ends -->
+
+<!-- We participate in the US government's analytics program. See the data at analytics.usa.gov. -->
+<script async="" type="text/javascript" src="./Navier-Stokes Equations_files/Universal-Federated-Analytics-Min.js.download" id="_fed_an_ua_tag"></script>
+
+
+
+</body></html>

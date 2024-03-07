@@ -1,0 +1,3 @@
+Fire#	InitialWeight(g) FinalWeight(g)	
+C6_fire1	22	9.5
+D12_fire1	41	18	
