@@ -7,10 +7,14 @@
 
 #include <tcs3200.h>
 
+const char checkColor = 'b';
+const int threshold = 100;
+const int speedScale = 200; //scale the speed of operation
+const int lockoutMillis = 100; // a new turn will not start if it has been less than this time since the last turn
 
 const int pwmA = 5;
 const int in1A = 7;
-const int in2A =8;
+const int in2A = 8;
  
 const int pwmB = 6;
 const int in1B = 9;
@@ -18,14 +22,14 @@ const int in2B = 10;
 
 const int led = 13;
 
-const char checkColor = 'b';
-const int threshold = 10;
-
-
 // Motor Speed Values - Start at zero
 
 int MotorSpeed1 = 0;
 int MotorSpeed2 = 0;
+int lastTurn = 0;
+
+// State
+bool turnDir = 0; // if 0 it was last going left, if 1 it was going right
 
 // int red, green, blue, white;
 int color;
@@ -42,13 +46,10 @@ void setup() {
   pinMode(in2B, OUTPUT);
   pinMode(led, OUTPUT);
   Serial.begin(9600);
+  lastTurn = millis();
 }
 
 void loop() {
-  //red = tcs.colorRead('r', 0);    //scaling can also be put to 0%, 20%, and 100% (default scaling is 20%)   ---    read more at: https://www.mouser.com/catalog/specsheets/TCS3200-E11.pdf
-  //red = tcs.colorRead('r', 20);
-  //red = tcs.colorRead('r', 100);
-
   color = tcs.colorRead('b');    //reads color value for blue
   if (color > threshold){
     tape = 1;
@@ -58,15 +59,35 @@ void loop() {
   // Serial.print("color = ");
   // Serial.print(color);
   
-  digitalWrite(in1A, HIGH);
-  digitalWrite(in2A, LOW);
+  digitalWrite(in1A, LOW);
+  digitalWrite(in2A, HIGH);
   // Set Motor B forward
   digitalWrite(in1B, HIGH);
   digitalWrite(in2B, LOW);
-  analogWrite(pwmA, tape*255);
-  analogWrite(pwmB, tape*255);
+
+  // if(turnDir){
+  //   analogWrite(pwmA, speedScale);
+  //   analogWrite(pwmB, 0);
+  // }else{
+  //   analogWrite(pwmB, speedScale);
+  //   analogWrite(pwmA, 0);
+  // }
+
+  // if(!tape && (millis() - lastTurn) > lockoutMillis){
+  //   lastTurn = millis();
+  //   turnDir = !turnDir;
+  // }
+
+  if(tape){
+    analogWrite(pwmA, speedScale);
+    analogWrite(pwmB, 0);
+  }else{
+    analogWrite(pwmB, speedScale);
+    analogWrite(pwmA, 0);
+  }
+
   digitalWrite(led,tape);
-  Serial.print(tape);
+  Serial.print(color);
   Serial.println();
 
   delay(20);
