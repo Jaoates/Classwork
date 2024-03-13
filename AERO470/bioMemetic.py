@@ -83,6 +83,9 @@ class AcoSim:
     
     def evapPheromone(self):
         self.pMatrix = (1-self.rho)*self.pMatrix
+
+    def rankAnts(self):
+        self.ants = sorted(self.ants,key = lambda x: x.calcPathCost(self.dMatrix))
     
     def doSim(self):
         for i in range(self.nRuns):
@@ -93,9 +96,11 @@ class AcoSim:
                     a.dropPheromone(self.dMatrix,self.pMatrix)
                     a.updatePath()
                     self.evapPheromone()
+        self.rankAnts()
+        bestAnt = self.ants[0]
+        return bestAnt
             # print(self.ants)
-            # print(self.pMatrix)
-        
+            # print(self.pMatrix)        
             
 pMatrix = np.ones([5,5]) # pheromone matrix
 dMatrix = np.array([[0,10,12,11,14],
@@ -105,11 +110,14 @@ dMatrix = np.array([[0,10,12,11,14],
                     [14,8,14,16,0]]) # distance matrix
 
 mySim=AcoSim(3,20,.005,dMatrix,pMatrix)
-mySim.doSim()
+bestAnt = mySim.doSim()
+print(bestAnt)
+print(bestAnt.calcPathCost(mySim.dMatrix))
 
-for a in mySim.ants:
-    # print(a.path)
-    print(a.calcPathCost(mySim.dMatrix))
+
+# for a in mySim.ants:
+#     # print(a.path)
+#     print(a.calcPathCost(mySim.dMatrix))
 
 #endregion
 
