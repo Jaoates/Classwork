@@ -21,19 +21,12 @@ n = 2936
 load = mean(D(1:n,6)-D(1:n,7))
 K = 2.45
 A = (1)*(1/8) * 0.00064516 % m^2
-sigAve = load/A;
+sigAve = s/A;
 sigMax = sigAve*K
 sigMax = sigMax/1e3 % Mpa
 
-a = 7.10 
-w = 25.4
-Af = A*(a/w)
-Scrit = load/A;
-Scrit = Scrit/1e3
-
 Kic = 29e6
-acrit = ((Kic/(sigAve))^2 )/pi;
-acrit = acrit * 1e3
+acrit = ((Kic/(s*1e3))^2 )/pi
 scatter(n,sigMax)
 ylim([0,500])
 xscale("log")
