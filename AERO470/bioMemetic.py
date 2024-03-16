@@ -2,8 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import linalg as spl
 from scipy import integrate as int
+import copy as copy
 
-regionsToRun = [2]
+regionsToRun = [1,2]
 
 
 #region Part1
@@ -112,7 +113,9 @@ if 1 in regionsToRun:
 
     mySim=AcoSim(3,20,.005,dMatrix,pMatrix)
     bestAnt = mySim.doSim()
+    print("the best path is:")
     print(bestAnt)
+    print("the value is:")
     print(bestAnt.calcPathCost(mySim.dMatrix))
 
 #endregion
@@ -132,19 +135,25 @@ def ackleys(x,**kwargs):
 
 class Particle:
     # note this class is highly inspired by Dr. Meheil's renowned code
-    weight = 1 # inertia of particle
-    cognitive = 1 # cognitive weight
-    social = 1 # social weight
+    weight = .04 # inertia of particle
+    cognitive = .5 # cognitive weight
+    social = .6 # social weight
     def __init__(self,psosim) -> None:
-        dom = psosim.domain
-        dim = psosim.dimention
-        self.pos = ( np.random.rand(dim) - .5 ) * 2 * dom
-        self.bestPos = self.pos
-        self.vel = ( np.random.rand(dim) - .5 ) * 2 * dom # im concerned this will create an alias... need deepCopy?
-        self.updateVal() # this will init a randomly generated particle with the correct value for its pos
+        self.dom = psosim.domain
+        self.dim = psosim.dimention
+        self.pos = ( np.random.rand(self.dim) - .5 ) * 2 * self.dom
+        self.bestPos = copy.deepcopy(self.pos) # im concerned this will create an alias... need deepCopy?
+        self.vel = ( np.random.rand(self.dim) - .5 ) * 2 * self.dom 
+        self.updateBest() # this will init a randomly generated particle with the correct value for its pos
+
+    def __repr__(self):
+        return f"Particle    val:{self.val}    pos:{self.pos}"
 
     def updatePos(self):
         self.pos += self.vel
+        for i in range(self.dim):
+            if self.pos[i] > self.dom:
+                self.pos[i] = self.dom
 
     def updateVel(self,psosim):
         self.vel *= self.weight
@@ -153,33 +162,44 @@ class Particle:
 
     def updateBest(self):
         self.val = ackleys(self.pos)
-        if self.val > ackleys(self.bestPos):
+        if self.val < ackleys(self.bestPos):
             self.bestPos = self.pos
 
 class PsoSim():
-    nParticles = 3
-    nRuns = 10
-    def __init__(self,simDomain,simDimention):
+    def __init__(self,nParticles,nRuns,simDomain,simDimention):
+        self.nParticles = nParticles
+        self.nRuns = nRuns
         self.domain = simDomain # what is the min and max distance in all dims of the sim
         self.dimention = simDimention # how many dimensions do the particles live in
         self.particles = [Particle(self) for i in range(self.nParticles)]
+        self.updateBest()
     
     def updateBest(self):
-        self.bestParticle = sorted(self.particles, key = lambda x: x.val)[-1]
+        self.bestParticle = sorted(self.particles, key = lambda x: x.val)[0]
 
+    def doSim(self):
+        for i in range(self.nRuns):
+            for p in self.particles:
+                p.updateVel(self)
+                p.updatePos()
+                p.updateBest()
+                self.updateBest()
+        return(self.bestParticle)
 
+sim = PsoSim(10,4,10,2)
+bestParticle = sim.doSim()
+print(f"The best particle is: {bestParticle}")
 
+nx, ny = (300, 300)
+x = np.linspace(-10, 10, nx)
+y = np.linspace(-10, 10, ny)
+X, Y = np.meshgrid(x, y)
 
-# testcase for ackley
-# nx, ny = (1000, 1000)
-# x = np.linspace(-10, 10, nx)
-# y = np.linspace(-10, 10, ny)
-# X, Y = np.meshgrid(x, y)
+Z = np.array([ackleys([x,y]) for (x,y) in zip(X.ravel(), Y.ravel())]).reshape(X.shape)
+plt.contour(X,Y,Z)
+plt.scatter([p.pos[0] for p in sim.particles],[p.pos[1] for p in sim.particles])
+plt.show()
 
-# Z = np.array([f([x,y]) for (x,y) in zip(X.ravel(), Y.ravel())]).reshape(X.shape)
-# plt.contour(X,Y,Z)
-# plt.show()
-
-
+pass
 
 #endregion
