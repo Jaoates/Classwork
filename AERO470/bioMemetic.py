@@ -186,7 +186,7 @@ class PsoSim():
                 self.updateBest()
         return(self.bestParticle)
 
-sim = PsoSim(10,4,10,2)
+sim = PsoSim(10,10,10,3)
 bestParticle = sim.doSim()
 print(f"The best particle is: {bestParticle}")
 
