@@ -25,7 +25,8 @@ class Schedule:
     def getNextFree(self):
         return self.events[-1].time + self.events[-1].duration
     def append(self,event):
-        self.events.append(event)
+        assert(isinstance(event,Event))
+        self.events = self.events + [event]
         self.updateVal()
 
 
@@ -50,10 +51,20 @@ schedules = [Schedule()]
 for e in events:
     sa =[] # schedules to add
     for s in schedules:
-        if not s.getNextFree() > e.time:
-            sc = copy.deepcopy(s) # schedule copy
+        if s.getNextFree() <= e.time:
+            sc = copy.deepcopy(s) # schedule copy, somehow this doesn't deepcopy the actual events list tho :/
+            # print()
+            # print(s)
             sc.append(e)
+            # print(s)
+            # print(sc)
+            # hmm = id(sc) == id(s)
             sa.append(sc)
     schedules.extend(sa)
 
+schedules = sorted(schedules,key = lambda x: x.value)
 for s in schedules: print(s)
+
+print()
+print(f"There are {len(schedules)} feasible schedules")
+print(f"The best schedule is - {schedules[-1]}")
