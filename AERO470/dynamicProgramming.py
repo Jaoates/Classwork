@@ -10,11 +10,8 @@ class Event:
         self.time = time
         self.duration = duration
         self.value = value
-
-    
     def __repr__(self):
         return f"Event:{self.name}"
-
 class Schedule:
     events = [Event("nullEvent",0,0,0)]
     value = 0
@@ -28,12 +25,9 @@ class Schedule:
         assert(isinstance(event,Event))
         self.events = self.events + [event]
         self.updateVal()
-
-
 times = np.array([12,3,7,21,23,24,1,17,13,20])
 durations = np.array([4,4,2,3,3,1,3,2,1,4])
 values = np.array([5,8,8,9,5,7,5,6,6,5])
-
 n = len(times)
 events = []
 for i in range(n):
@@ -41,7 +35,6 @@ for i in range(n):
     # print(events[i])
 
 # events.append(Event("nullEvent",0,0,0))
-
 events = sorted(events,key=lambda x: x.time)
 # sched = Schedule()
 # sched.events = events
