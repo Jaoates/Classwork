@@ -3,8 +3,6 @@ import matplotlib.pyplot as plt
 
 class Simulation:
     def __init__(self, T):
-        # Sim parameters
-        
         # System States
         self.N = 0
 
@@ -25,7 +23,7 @@ class Simulation:
         t_event = min(self.t_arrival, self.t_depart)
         self.total_wait += self.N*(t_event - self.clock)
         self.clock = t_event
-        if t_event is self.t_arrival:
+        if t_event == self.t_arrival:
             self.handle_arrival()
         else:
             self.handle_departure()
@@ -42,7 +40,7 @@ class Simulation:
         self.N_departs += 1
         self.N -= 1
         if self.N <= 0:
-            self.t_depart = np.inf            
+            self.t_depart = float("inf")
 
     def generate_arrival(self):
         return np.random.exponential(1./3)
@@ -51,7 +49,7 @@ class Simulation:
         return np.random.exponential(1./4)
 
 np.random.seed(0)
-sim = Simulation(float('inf'))
+sim = Simulation(float("inf"))
 
 tarr = []
 tdep = []
@@ -65,8 +63,8 @@ for i in range(100):
     Ncust.append(sim.N)
     sim.total_wait_vec.append(sim.total_wait)
 
-print(f"Customers served: {sim.N_departs}")
-print(f"Total wait time: {sim.total_wait} minutes")
+print(f"{sim.N_departs} customers were served")
+print(f"The total wait time is {sim.total_wait} minutes")
 
 fig, ax = plt.subplots()
 ax.plot(t, sim.total_wait_vec)
