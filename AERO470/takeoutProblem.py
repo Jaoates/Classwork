@@ -1,4 +1,5 @@
 import numpy as np
+import time 
 import matplotlib.pyplot as plt
 
 class Simulation:
@@ -48,7 +49,7 @@ class Simulation:
     def generate_service(self):
         return np.random.exponential(1./4)
 
-np.random.seed(0)
+np.random.seed(int(time.time()*10000)%2**32)
 sim = Simulation(float("inf"))
 
 tarr = []
